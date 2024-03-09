@@ -321,6 +321,246 @@ paths:
       summary: Update category by ID
       tags:
       - Category
+  /product:
+    get:
+      description: Retrieve all products
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/responses.Response'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/responses.ErrorMessage'
+      summary: Get all products
+      tags:
+      - Product
+  /product/{id}:
+    get:
+      description: Retrieve a product by its ID
+      parameters:
+      - description: Product ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/responses.Response'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/responses.ErrorMessage'
+      summary: Get product by ID
+      tags:
+      - Product
+  /product/create:
+    post:
+      consumes:
+      - multipart/form-data
+      description: Create a new product
+      parameters:
+      - description: Product Name
+        in: formData
+        name: name
+        required: true
+        type: string
+      - description: Category ID
+        in: formData
+        name: category
+        required: true
+        type: string
+      - description: Product Description
+        in: formData
+        name: description
+        required: true
+        type: string
+      - description: Product Brand
+        in: formData
+        name: brand
+        required: true
+        type: string
+      - description: Product Price
+        in: formData
+        name: price
+        required: true
+        type: integer
+      - description: Product Count In Stock
+        in: formData
+        name: countInStock
+        required: true
+        type: integer
+      - description: Product Weight
+        in: formData
+        name: weight
+        required: true
+        type: integer
+      - description: Product Rating
+        in: formData
+        name: rating
+        required: true
+        type: integer
+      - description: Product Image
+        in: formData
+        name: image_product
+        required: true
+        type: file
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/responses.Response'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/responses.ErrorMessage'
+      security:
+      - BearerAuth: []
+      summary: Create product
+      tags:
+      - Product
+  /product/delete/{id}:
+    delete:
+      description: Delete an existing product
+      parameters:
+      - description: Product ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/responses.Response'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/responses.ErrorMessage'
+      security:
+      - BearerAuth: []
+      summary: Delete product
+      tags:
+      - Product
+  /product/hello:
+    get:
+      description: Return a greeting message for products
+      produces:
+      - text/plain
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: string
+      summary: Greet the user for products
+      tags:
+      - Product
+  /product/slug/{slug}:
+    get:
+      description: Retrieve a product by its slug
+      parameters:
+      - description: Product Slug
+        in: path
+        name: slug
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/responses.Response'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/responses.ErrorMessage'
+      summary: Get product by slug
+      tags:
+      - Product
+  /product/update/{id}:
+    put:
+      consumes:
+      - multipart/form-data
+      description: Update an existing product
+      parameters:
+      - description: Product ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      - description: Product Name
+        in: formData
+        name: name
+        required: true
+        type: string
+      - description: Category ID
+        in: formData
+        name: category
+        required: true
+        type: string
+      - description: Product Description
+        in: formData
+        name: description
+        required: true
+        type: string
+      - description: Product Brand
+        in: formData
+        name: brand
+        required: true
+        type: string
+      - description: Product Price
+        in: formData
+        name: price
+        required: true
+        type: integer
+      - description: Product Count In Stock
+        in: formData
+        name: countInStock
+        required: true
+        type: integer
+      - description: Product Weight
+        in: formData
+        name: weight
+        required: true
+        type: integer
+      - description: Product Rating
+        in: formData
+        name: rating
+        required: true
+        type: integer
+      - description: Product Image
+        in: formData
+        name: image_product
+        required: true
+        type: file
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/responses.Response'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/responses.ErrorMessage'
+      security:
+      - BearerAuth: []
+      summary: Update product
+      tags:
+      - Product
   /user:
     get:
       description: Get all users

@@ -53,4 +53,5 @@ func (h *Handler) InitApi(router *fiber.App) {
 	h.initAuthGroup(router)
 	h.initUserGroup(router)
 	h.initCategoryGroup(router)
+	h.initProductGroup(router)
 }

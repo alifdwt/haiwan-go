@@ -12,6 +12,7 @@ type Service struct {
 	Auth     AuthService
 	User     UserService
 	Category CategoryService
+	Product  ProductService
 }
 
 type Deps struct {
@@ -27,5 +28,6 @@ func NewService(deps Deps) *Service {
 		Auth:     NewAuthService(deps.Repository.User, deps.Hashing, deps.Logger, deps.Token),
 		User:     NewUserService(deps.Repository.User, deps.Hashing, deps.Logger),
 		Category: NewCategoryService(deps.Repository.Category, deps.Mapper.CategoryMapper),
+		Product:  NewProductService(deps.Repository.Product, deps.Logger, deps.Mapper.ProductMapper),
 	}
 }

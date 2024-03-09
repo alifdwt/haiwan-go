@@ -3,9 +3,11 @@ package service
 import (
 	"github.com/alifdwt/haiwan-go/internal/domain/requests/auth"
 	"github.com/alifdwt/haiwan-go/internal/domain/requests/category"
+	"github.com/alifdwt/haiwan-go/internal/domain/requests/product"
 	"github.com/alifdwt/haiwan-go/internal/domain/requests/user"
 	"github.com/alifdwt/haiwan-go/internal/domain/responses"
 	catresponse "github.com/alifdwt/haiwan-go/internal/domain/responses/category"
+	pro "github.com/alifdwt/haiwan-go/internal/domain/responses/product"
 	"github.com/alifdwt/haiwan-go/internal/models"
 )
 
@@ -30,4 +32,13 @@ type CategoryService interface {
 	CreateCategory(request *category.CreateCategoryRequest) (*catresponse.CategoryResponse, error)
 	UpdateCategoryById(id int, updatedCategory *category.UpdateCategoryRequest) (*catresponse.CategoryResponse, error)
 	DeleteCategoryById(categoryId int) (*catresponse.CategoryResponse, error)
+}
+
+type ProductService interface {
+	GetProductAll() ([]*pro.ProductResponse, error)
+	CreateProduct(request *product.CreateProductRequest) (*pro.ProductResponse, error)
+	GetProductById(productId int) (*pro.ProductResponse, error)
+	GetProductBySlug(slug string) (*pro.ProductResponse, error)
+	UpdateProduct(productId int, request *product.UpdateProductRequest) (*pro.ProductResponse, error)
+	DeleteProduct(productId int) (*pro.ProductResponse, error)
 }
