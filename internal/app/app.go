@@ -2,6 +2,7 @@ package app
 
 import (
 	"github.com/alifdwt/haiwan-go/internal/handler"
+	"github.com/alifdwt/haiwan-go/internal/mapper"
 	"github.com/alifdwt/haiwan-go/internal/repository"
 	"github.com/alifdwt/haiwan-go/internal/service"
 	"github.com/alifdwt/haiwan-go/pkg/auth"
@@ -9,7 +10,7 @@ import (
 	"github.com/alifdwt/haiwan-go/pkg/database/migration"
 	"github.com/alifdwt/haiwan-go/pkg/database/postgres"
 	"github.com/alifdwt/haiwan-go/pkg/dotenv"
-	hashing "github.com/alifdwt/haiwan-go/pkg/hasing"
+	"github.com/alifdwt/haiwan-go/pkg/hashing"
 	"github.com/alifdwt/haiwan-go/pkg/logger"
 	"github.com/spf13/viper"
 	"go.uber.org/zap"
@@ -23,6 +24,7 @@ import (
 // @contact.url https://github.com/alifdwt
 // @contact.email aputradewantara@gmail.com
 
+// @host localhost:8000
 // @BasePath /api/
 
 // @securityDefinitions.apikey BearerAuth
@@ -62,11 +64,14 @@ func Run() {
 		log.Error("Error while initializing token manager", zap.Error(err))
 	}
 
+	mapper := mapper.NewMapper()
+
 	service := service.NewService(service.Deps{
 		Repository: repository,
 		Hashing:    *hashing,
 		Token:      token,
 		Logger:     *log,
+		Mapper:     *mapper,
 	})
 
 	myHandler := handler.NewHandler(service, *myCloudinary, token)

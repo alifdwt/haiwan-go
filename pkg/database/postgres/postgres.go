@@ -8,7 +8,6 @@ import (
 	"gorm.io/gorm"
 )
 
-
 func NewClient() (*gorm.DB, error) {
 	dsn := fmt.Sprintf("postgres://%s:%s@%s/%s?sslmode=disable", viper.GetString("DB_USER"), viper.GetString("DB_PASSWORD"), viper.GetString("DB_HOST"), "postgres")
 

@@ -10,7 +10,7 @@ import (
 	"github.com/alifdwt/haiwan-go/internal/models"
 	"github.com/alifdwt/haiwan-go/internal/repository"
 	customAuth "github.com/alifdwt/haiwan-go/pkg/auth"
-	hashing "github.com/alifdwt/haiwan-go/pkg/hasing"
+	"github.com/alifdwt/haiwan-go/pkg/hashing"
 	"github.com/alifdwt/haiwan-go/pkg/logger"
 )
 

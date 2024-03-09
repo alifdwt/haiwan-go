@@ -7,7 +7,7 @@ import (
 	"github.com/alifdwt/haiwan-go/internal/domain/requests/user"
 	"github.com/alifdwt/haiwan-go/internal/models"
 	"github.com/alifdwt/haiwan-go/internal/repository"
-	hashing "github.com/alifdwt/haiwan-go/pkg/hasing"
+	"github.com/alifdwt/haiwan-go/pkg/hashing"
 	"github.com/alifdwt/haiwan-go/pkg/logger"
 )
 

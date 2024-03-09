@@ -41,6 +41,7 @@ func (m *MyCloudinary) UploadToCloudinary(file multipart.File, filePath string) 
 	uploadParams := uploader.UploadParams{
 		PublicID:     filePath,
 		ResourceType: "image",
+		Folder:       "HaiwanGo",
 	}
 
 	result, err := m.Cloud.Upload.Upload(ctx, file, uploadParams)
