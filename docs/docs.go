@@ -161,11 +161,6 @@ const docTemplate = `{
         },
         "/category": {
             "get": {
-                "security": [
-                    {
-                        "BearerAuth": []
-                    }
-                ],
                 "description": "Get all categories",
                 "consumes": [
                     "application/json"
@@ -288,11 +283,6 @@ const docTemplate = `{
         },
         "/category/slug/{slug}": {
             "get": {
-                "security": [
-                    {
-                        "BearerAuth": []
-                    }
-                ],
                 "description": "Get a category by its slug",
                 "consumes": [
                     "application/json"
@@ -757,6 +747,11 @@ const docTemplate = `{
         },
         "/product/{id}": {
             "get": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
                 "description": "Retrieve a product by its ID",
                 "produces": [
                     "application/json"
@@ -792,11 +787,6 @@ const docTemplate = `{
         },
         "/user": {
             "get": {
-                "security": [
-                    {
-                        "BearerAuth": []
-                    }
-                ],
                 "description": "Get all users",
                 "produces": [
                     "application/json"
@@ -960,11 +950,6 @@ const docTemplate = `{
         },
         "/user/{id}": {
             "get": {
-                "security": [
-                    {
-                        "BearerAuth": []
-                    }
-                ],
                 "description": "Get user by ID",
                 "produces": [
                     "application/json"

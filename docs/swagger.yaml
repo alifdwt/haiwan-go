@@ -166,8 +166,6 @@ paths:
           description: Bad Request
           schema:
             $ref: '#/definitions/responses.ErrorMessage'
-      security:
-      - BearerAuth: []
       summary: Get all categories
       tags:
       - Category
@@ -279,8 +277,6 @@ paths:
           description: Bad Request
           schema:
             $ref: '#/definitions/responses.ErrorMessage'
-      security:
-      - BearerAuth: []
       summary: Get category by slug
       tags:
       - Category
@@ -358,6 +354,8 @@ paths:
           description: Bad Request
           schema:
             $ref: '#/definitions/responses.ErrorMessage'
+      security:
+      - BearerAuth: []
       summary: Get product by ID
       tags:
       - Product
@@ -575,8 +573,6 @@ paths:
           description: Bad Request
           schema:
             $ref: '#/definitions/responses.ErrorMessage'
-      security:
-      - BearerAuth: []
       summary: Get all users
       tags:
       - User
@@ -600,8 +596,6 @@ paths:
           description: Bad Request
           schema:
             $ref: '#/definitions/responses.ErrorMessage'
-      security:
-      - BearerAuth: []
       summary: Get user by ID
       tags:
       - User

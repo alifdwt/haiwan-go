@@ -16,10 +16,10 @@ func (h *Handler) initProductGroup(api *fiber.App) {
 
 	product.Get("/hello", h.handlerProductHello)
 	product.Get("/", h.handlerProductAll)
-	product.Get("/:id", h.handlerProductById)
 	product.Get("/slug/:slug", h.handlerProductBySlug)
 
 	product.Use(middleware.Protector())
+	product.Get("/:id", h.handlerProductById)
 	product.Post("/create", h.handlerProductCreate)
 	product.Put("/update/:id", h.handlerProductUpdate)
 	product.Delete("/delete/:id", h.handlerProductDelete)
@@ -63,6 +63,7 @@ func (h *Handler) handlerProductAll(c *fiber.Ctx) error {
 // @Description Retrieve a product by its ID
 // @Tags Product
 // @Produce json
+// @Security BearerAuth
 // @Param id path int true "Product ID"
 // @Success 200 {object} responses.Response
 // @Failure 400 {object} responses.ErrorMessage

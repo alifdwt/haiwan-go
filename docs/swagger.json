@@ -155,11 +155,6 @@
         },
         "/category": {
             "get": {
-                "security": [
-                    {
-                        "BearerAuth": []
-                    }
-                ],
                 "description": "Get all categories",
                 "consumes": [
                     "application/json"
@@ -282,11 +277,6 @@
         },
         "/category/slug/{slug}": {
             "get": {
-                "security": [
-                    {
-                        "BearerAuth": []
-                    }
-                ],
                 "description": "Get a category by its slug",
                 "consumes": [
                     "application/json"
@@ -751,6 +741,11 @@
         },
         "/product/{id}": {
             "get": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
                 "description": "Retrieve a product by its ID",
                 "produces": [
                     "application/json"
@@ -786,11 +781,6 @@
         },
         "/user": {
             "get": {
-                "security": [
-                    {
-                        "BearerAuth": []
-                    }
-                ],
                 "description": "Get all users",
                 "produces": [
                     "application/json"
@@ -954,11 +944,6 @@
         },
         "/user/{id}": {
             "get": {
-                "security": [
-                    {
-                        "BearerAuth": []
-                    }
-                ],
                 "description": "Get user by ID",
                 "produces": [
                     "application/json"

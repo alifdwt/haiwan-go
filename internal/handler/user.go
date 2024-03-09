@@ -26,7 +26,6 @@ func (h *Handler) initUserGroup(api *fiber.App) {
 // @Description Get all users
 // @Tags User
 // @Produce json
-// @Security BearerAuth
 // @Success 200 {object} responses.Response
 // @Failure 400 {object} responses.ErrorMessage
 // @Router /user [get]
@@ -52,7 +51,6 @@ func (h *Handler) handlerUserAll(c *fiber.Ctx) error {
 // @Tags User
 // @Param id path integer true "User ID"
 // @Produce json
-// @Security BearerAuth
 // @Success 200 {object} responses.Response
 // @Failure 400 {object} responses.ErrorMessage
 // @Router /user/{id} [get]

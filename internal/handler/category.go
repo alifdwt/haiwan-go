@@ -32,7 +32,6 @@ func (h *Handler) handlerHelloCategory(c *fiber.Ctx) error {
 // @Tags Category
 // @Accept json
 // @Produce json
-// @Security BearerAuth
 // @Success 200 {object} responses.Response
 // @Failure 400 {object} responses.ErrorMessage
 // @Router /category [get]
@@ -96,7 +95,6 @@ func (h *Handler) handlerCategoryById(c *fiber.Ctx) error {
 // @Tags Category
 // @Accept json
 // @Produce json
-// @Security BearerAuth
 // @Param slug path string true "Category Slug"
 // @Success 200 {object} responses.Response
 // @Failure 400 {object} responses.ErrorMessage
