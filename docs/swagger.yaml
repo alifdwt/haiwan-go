@@ -23,6 +23,30 @@ definitions:
       password:
         type: string
     type: object
+  cart.CartCreateRequest:
+    properties:
+      image_product:
+        type: string
+      name:
+        type: string
+      price:
+        type: string
+      product_id:
+        type: integer
+      quantity:
+        type: integer
+      user_id:
+        type: integer
+      weight:
+        type: integer
+    type: object
+  cart.DeleteCartRequest:
+    properties:
+      cart_ids:
+        items:
+          type: integer
+        type: array
+    type: object
   responses.ErrorMessage:
     properties:
       error:
@@ -59,6 +83,34 @@ info:
   title: HaiwanGo
   version: "1.0"
 paths:
+  /api/cart/delete-many:
+    delete:
+      consumes:
+      - application/json
+      description: Delete multiple carts by their IDs
+      parameters:
+      - description: Delete Cart Request Body
+        in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/cart.DeleteCartRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/responses.Response'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/responses.ErrorMessage'
+      security:
+      - BearerAuth: []
+      summary: Delete many carts
+      tags:
+      - Cart
   /auth/hello:
     get:
       description: Return a greeting message to the user
@@ -150,6 +202,81 @@ paths:
       summary: Register to the application
       tags:
       - Auth
+  /cart:
+    get:
+      consumes:
+      - application/json
+      description: Get all carts associated with the authenticated user
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/responses.Response'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/responses.ErrorMessage'
+      security:
+      - BearerAuth: []
+      tags:
+      - Cart
+  /cart/create:
+    post:
+      consumes:
+      - application/json
+      description: Create a new cart for the authenticated user
+      parameters:
+      - description: Cart Create Request Body
+        in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/cart.CartCreateRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/responses.Response'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/responses.ErrorMessage'
+      security:
+      - BearerAuth: []
+      summary: Create cart
+      tags:
+      - Cart
+  /cart/delete/{cart_id}:
+    delete:
+      consumes:
+      - application/json
+      description: Delete a cart by its ID
+      parameters:
+      - description: Cart ID
+        in: path
+        name: cart_id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/responses.Response'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/responses.ErrorMessage'
+      security:
+      - BearerAuth: []
+      summary: Delete cart
+      tags:
+      - Cart
   /category:
     get:
       consumes:

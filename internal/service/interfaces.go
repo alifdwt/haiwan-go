@@ -2,6 +2,7 @@ package service
 
 import (
 	"github.com/alifdwt/haiwan-go/internal/domain/requests/auth"
+	"github.com/alifdwt/haiwan-go/internal/domain/requests/cart"
 	"github.com/alifdwt/haiwan-go/internal/domain/requests/category"
 	"github.com/alifdwt/haiwan-go/internal/domain/requests/product"
 	"github.com/alifdwt/haiwan-go/internal/domain/requests/user"
@@ -41,4 +42,11 @@ type ProductService interface {
 	GetProductBySlug(slug string) (*pro.ProductResponse, error)
 	UpdateProduct(productId int, request *product.UpdateProductRequest) (*pro.ProductResponse, error)
 	DeleteProduct(productId int) (*pro.ProductResponse, error)
+}
+
+type CartService interface {
+	GetCartAll(userId int) (*[]models.Cart, error)
+	CreateCart(cartRequest *cart.CartCreateRequest) (*models.Cart, error)
+	DeleteCart(cartId int) (*models.Cart, error)
+	DeleteCartMany(cartIds cart.DeleteCartRequest) (int64, error)
 }

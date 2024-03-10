@@ -2,6 +2,7 @@ package repository
 
 import (
 	"github.com/alifdwt/haiwan-go/internal/domain/requests/auth"
+	"github.com/alifdwt/haiwan-go/internal/domain/requests/cart"
 	"github.com/alifdwt/haiwan-go/internal/domain/requests/category"
 	"github.com/alifdwt/haiwan-go/internal/domain/requests/product"
 	"github.com/alifdwt/haiwan-go/internal/domain/requests/user"
@@ -36,4 +37,11 @@ type ProductRepository interface {
 	UpdateProduct(productId int, request *product.UpdateProductRequest) (*models.Product, error)
 	DeleteProduct(productId int) (*models.Product, error)
 	CountProduct() (int, error)
+}
+
+type CartRepository interface {
+	GetCartAll(userId int) (*[]models.Cart, error)
+	CreateCart(cartRequest *cart.CartCreateRequest) (*models.Cart, error)
+	DeleteCart(cartId int) (*models.Cart, error)
+	DeleteCartMany(cartIds cart.DeleteCartRequest) (int64, error)
 }
