@@ -2,6 +2,10 @@ package repository
 
 import "gorm.io/gorm"
 
+type Store interface {
+	UserRepository
+}
+
 type Repositories struct {
 	User     UserRepository
 	Category CategoryRepository

@@ -8,6 +8,10 @@ import (
 	"github.com/alifdwt/haiwan-go/pkg/logger"
 )
 
+type Store interface {
+	Service
+}
+
 type Service struct {
 	Auth     AuthService
 	User     UserService

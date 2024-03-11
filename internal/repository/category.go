@@ -37,7 +37,7 @@ func (r *categoryRepository) GetCategoryById(categoryId int) (*models.Category, 
 	db := r.db.Model(category)
 
 	checkCategoryById := db.Debug().Where("id = ?", categoryId).First(&category)
-	if checkCategoryById.RowsAffected > 0 {
+	if checkCategoryById.RowsAffected < 0 {
 		return &category, errors.New("category id is not found")
 	}
 

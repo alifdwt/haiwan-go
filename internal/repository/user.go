@@ -95,8 +95,13 @@ func (r *userRepository) UpdateUserById(id int, updatedUser *user.UpdateUserRequ
 	res.Email = updatedUser.Email
 	res.Password = updatedUser.Password
 
-	if err := db.Save(&res).Error; err != nil {
-		return nil, errors.New("error updating user: " + err.Error())
+	// if err := db.Save(&res).Error; err != nil {
+	// 	return nil, errors.New("error updating user: " + err.Error())
+	// }
+
+	updateUser := db.Debug().Updates(&res)
+	if updateUser.RowsAffected > 1 {
+		return res, errors.New("error updating user")
 	}
 
 	return res, nil
