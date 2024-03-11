@@ -4,10 +4,12 @@ import (
 	"github.com/alifdwt/haiwan-go/internal/domain/requests/auth"
 	"github.com/alifdwt/haiwan-go/internal/domain/requests/cart"
 	"github.com/alifdwt/haiwan-go/internal/domain/requests/category"
+	"github.com/alifdwt/haiwan-go/internal/domain/requests/order"
 	"github.com/alifdwt/haiwan-go/internal/domain/requests/product"
 	"github.com/alifdwt/haiwan-go/internal/domain/requests/user"
 	"github.com/alifdwt/haiwan-go/internal/domain/responses"
 	catresponse "github.com/alifdwt/haiwan-go/internal/domain/responses/category"
+	or "github.com/alifdwt/haiwan-go/internal/domain/responses/order"
 	pro "github.com/alifdwt/haiwan-go/internal/domain/responses/product"
 	"github.com/alifdwt/haiwan-go/internal/models"
 )
@@ -49,4 +51,11 @@ type CartService interface {
 	CreateCart(cartRequest *cart.CartCreateRequest) (*models.Cart, error)
 	DeleteCart(cartId int) (*models.Cart, error)
 	DeleteCartMany(cartIds cart.DeleteCartRequest) (int64, error)
+}
+
+type OrderService interface {
+	GetOrderAll() (*[]or.OrderResponses, error)
+	CreateOrder(userId int, request *order.CreateOrderRequest) (*models.Order, error)
+	GetOrderById(orderId int) (*or.OrderResponse, error)
+	GetOrdersByUser(userId int) (*[]models.Order, error)
 }

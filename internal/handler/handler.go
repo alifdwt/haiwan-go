@@ -55,4 +55,5 @@ func (h *Handler) InitApi(router *fiber.App) {
 	h.initCategoryGroup(router)
 	h.initProductGroup(router)
 	h.initCartGroup(router)
+	h.initOrderGroup(router)
 }

@@ -4,6 +4,7 @@ import (
 	"github.com/alifdwt/haiwan-go/internal/domain/requests/auth"
 	"github.com/alifdwt/haiwan-go/internal/domain/requests/cart"
 	"github.com/alifdwt/haiwan-go/internal/domain/requests/category"
+	"github.com/alifdwt/haiwan-go/internal/domain/requests/order"
 	"github.com/alifdwt/haiwan-go/internal/domain/requests/product"
 	"github.com/alifdwt/haiwan-go/internal/domain/requests/user"
 	"github.com/alifdwt/haiwan-go/internal/models"
@@ -44,4 +45,14 @@ type CartRepository interface {
 	CreateCart(cartRequest *cart.CartCreateRequest) (*models.Cart, error)
 	DeleteCart(cartId int) (*models.Cart, error)
 	DeleteCartMany(cartIds cart.DeleteCartRequest) (int64, error)
+}
+
+type OrderRepository interface {
+	GetOrderAll() (*[]models.Order, error)
+	CreateOrder(user_id int, request *order.CreateOrderRequest) (*models.Order, error)
+	GetOrderById(orderId int) (*models.Order, error)
+	GetOrderByUserId(userId int) (*[]models.Order, error)
+	CountOrder() (int, error)
+	SumTotalPrice() (int, error)
+	CalculateYearlyRevenue() ([]int, error)
 }

@@ -11,6 +11,7 @@ type Repositories struct {
 	Category CategoryRepository
 	Product  ProductRepository
 	Cart     CartRepository
+	Order    OrderRepository
 }
 
 func NewRepository(db *gorm.DB) *Repositories {
@@ -19,5 +20,6 @@ func NewRepository(db *gorm.DB) *Repositories {
 		Category: NewCategoryRepository(db),
 		Product:  NewProductRepository(db),
 		Cart:     NewCartRepository(db),
+		Order:    NewOrderRepository(db),
 	}
 }

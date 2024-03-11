@@ -47,6 +47,49 @@ definitions:
           type: integer
         type: array
     type: object
+  order.CartItemRequest:
+    properties:
+      name:
+        type: string
+      price:
+        type: integer
+      quantity:
+        type: integer
+    type: object
+  order.CreateOrderRequest:
+    properties:
+      cart_items:
+        items:
+          $ref: '#/definitions/order.CartItemRequest'
+        type: array
+      courier:
+        type: string
+      name:
+        type: string
+      phone:
+        type: string
+      shipping_address:
+        $ref: '#/definitions/order.ShippingAddressRequest'
+      shipping_cost:
+        type: integer
+      shipping_method:
+        type: string
+      total_price:
+        type: string
+      total_product:
+        type: string
+    type: object
+  order.ShippingAddressRequest:
+    properties:
+      alamat:
+        type: string
+      kota:
+        type: string
+      negara:
+        type: string
+      provinsi:
+        type: string
+    type: object
   responses.ErrorMessage:
     properties:
       error:
@@ -444,6 +487,110 @@ paths:
       summary: Update category by ID
       tags:
       - Category
+  /order:
+    get:
+      description: Retrieve all orders
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/responses.Response'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/responses.ErrorMessage'
+      security:
+      - BearerAuth: []
+      summary: Get all orders
+      tags:
+      - Order
+  /order/{id}:
+    get:
+      description: Retrieve an order by its ID
+      parameters:
+      - description: Order ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/responses.Response'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/responses.ErrorMessage'
+      security:
+      - BearerAuth: []
+      summary: Get order by ID
+      tags:
+      - Order
+  /order/create:
+    post:
+      consumes:
+      - application/json
+      description: Create a new order
+      parameters:
+      - description: Request body to create a new order
+        in: body
+        name: createOrderRequest
+        required: true
+        schema:
+          $ref: '#/definitions/order.CreateOrderRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/responses.Response'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/responses.ErrorMessage'
+      security:
+      - BearerAuth: []
+      summary: Create order
+      tags:
+      - Order
+  /order/hello:
+    get:
+      description: Return a greeting message for orders
+      produces:
+      - text/plain
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: string
+      summary: Greet the user for orders
+      tags:
+      - Order
+  /order/orderbyuser:
+    get:
+      description: Retrieve orders associated with a specific user
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/responses.Response'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/responses.ErrorMessage'
+      security:
+      - BearerAuth: []
+      summary: Get orders by user ID
+      tags:
+      - Order
   /product:
     get:
       description: Retrieve all products
