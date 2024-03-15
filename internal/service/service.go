@@ -20,6 +20,7 @@ type Service struct {
 	Cart     CartService
 	Order    OrderService
 	Review   ReviewService
+	Slider   SliderService
 }
 
 type Deps struct {
@@ -39,5 +40,6 @@ func NewService(deps Deps) *Service {
 		Cart:     NewCartService(deps.Repository.Cart, deps.Logger),
 		Order:    NewOrderService(deps.Repository.Order, deps.Logger, deps.Mapper.OrderMapper),
 		Review:   NewReviewService(deps.Repository.Review),
+		Slider:   NewSliderService(deps.Repository.Slider, deps.Logger),
 	}
 }

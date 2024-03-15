@@ -7,6 +7,7 @@ import (
 	"github.com/alifdwt/haiwan-go/internal/domain/requests/order"
 	"github.com/alifdwt/haiwan-go/internal/domain/requests/product"
 	"github.com/alifdwt/haiwan-go/internal/domain/requests/review"
+	"github.com/alifdwt/haiwan-go/internal/domain/requests/slider"
 	"github.com/alifdwt/haiwan-go/internal/domain/requests/user"
 	"github.com/alifdwt/haiwan-go/internal/models"
 )
@@ -62,4 +63,12 @@ type ReviewRepository interface {
 	GetReviewAll() (*[]models.Review, error)
 	GetReviewById(reviewId int) (*models.Review, error)
 	CreateReview(request review.CreateReviewRequest, userId int, productId int) (*models.Review, error)
+}
+
+type SliderRepository interface {
+	GetSliderAll() (*[]models.Slider, error)
+	GetSliderById(sliderId int) (*models.Slider, error)
+	CreateSlider(sliderRequest *slider.CreateSliderRequest) (*models.Slider, error)
+	UpdateSliderById(sliderId int, updatedSlider *slider.UpdateSliderRequest) (*models.Slider, error)
+	DeleteSliderById(sliderId int) (*models.Slider, error)
 }

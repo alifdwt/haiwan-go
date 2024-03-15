@@ -57,4 +57,5 @@ func (h *Handler) InitApi(router *fiber.App) {
 	h.initCartGroup(router)
 	h.initOrderGroup(router)
 	h.initReviewGroup(router)
+	h.initSliderGroup(router)
 }

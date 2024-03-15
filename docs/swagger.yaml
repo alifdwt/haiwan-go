@@ -161,6 +161,33 @@ paths:
       summary: Delete many carts
       tags:
       - Cart
+  /api/slider/{id}:
+    get:
+      description: Get slider by ID
+      parameters:
+      - description: Slider ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/responses.Response'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/responses.ErrorMessage'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/responses.ErrorMessage'
+      summary: Get slider by ID
+      tags:
+      - Slider
   /auth/hello:
     get:
       description: Return a greeting message to the user
@@ -916,6 +943,127 @@ paths:
       summary: Create review
       tags:
       - Review
+  /slider:
+    get:
+      description: Get all sliders
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/responses.Response'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/responses.ErrorMessage'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/responses.ErrorMessage'
+      summary: Get all sliders
+      tags:
+      - Slider
+  /slider/create:
+    post:
+      consumes:
+      - multipart/form-data
+      description: Create a new slider
+      parameters:
+      - description: Slider Name
+        in: formData
+        name: name
+        required: true
+        type: string
+      - description: Slider Image File
+        in: formData
+        name: file
+        required: true
+        type: file
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/responses.Response'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/responses.ErrorMessage'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/responses.ErrorMessage'
+      summary: Create a new slider
+      tags:
+      - Slider
+  /slider/delete/{id}:
+    delete:
+      description: Delete slider by ID
+      parameters:
+      - description: Slider ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/responses.Response'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/responses.ErrorMessage'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/responses.ErrorMessage'
+      summary: Delete slider by ID
+      tags:
+      - Slider
+  /slider/update/{id}:
+    put:
+      consumes:
+      - multipart/form-data
+      description: Update slider by ID
+      parameters:
+      - description: Slider ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      - description: Slider Name
+        in: formData
+        name: name
+        required: true
+        type: string
+      - description: Slider Image File
+        in: formData
+        name: file
+        required: true
+        type: file
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/responses.Response'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/responses.ErrorMessage'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/responses.ErrorMessage'
+      summary: Update slider by ID
+      tags:
+      - Slider
   /user:
     get:
       description: Get all users

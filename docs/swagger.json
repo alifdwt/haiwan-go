@@ -58,6 +58,47 @@
                 }
             }
         },
+        "/api/slider/{id}": {
+            "get": {
+                "description": "Get slider by ID",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Slider"
+                ],
+                "summary": "Get slider by ID",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "Slider ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/responses.Response"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/responses.ErrorMessage"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/responses.ErrorMessage"
+                        }
+                    }
+                }
+            }
+        },
         "/auth/hello": {
             "get": {
                 "description": "Return a greeting message to the user",
@@ -1220,6 +1261,188 @@
                     },
                     "400": {
                         "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/responses.ErrorMessage"
+                        }
+                    }
+                }
+            }
+        },
+        "/slider": {
+            "get": {
+                "description": "Get all sliders",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Slider"
+                ],
+                "summary": "Get all sliders",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/responses.Response"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/responses.ErrorMessage"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/responses.ErrorMessage"
+                        }
+                    }
+                }
+            }
+        },
+        "/slider/create": {
+            "post": {
+                "description": "Create a new slider",
+                "consumes": [
+                    "multipart/form-data"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Slider"
+                ],
+                "summary": "Create a new slider",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Slider Name",
+                        "name": "name",
+                        "in": "formData",
+                        "required": true
+                    },
+                    {
+                        "type": "file",
+                        "description": "Slider Image File",
+                        "name": "file",
+                        "in": "formData",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/responses.Response"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/responses.ErrorMessage"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/responses.ErrorMessage"
+                        }
+                    }
+                }
+            }
+        },
+        "/slider/delete/{id}": {
+            "delete": {
+                "description": "Delete slider by ID",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Slider"
+                ],
+                "summary": "Delete slider by ID",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "Slider ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/responses.Response"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/responses.ErrorMessage"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/responses.ErrorMessage"
+                        }
+                    }
+                }
+            }
+        },
+        "/slider/update/{id}": {
+            "put": {
+                "description": "Update slider by ID",
+                "consumes": [
+                    "multipart/form-data"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Slider"
+                ],
+                "summary": "Update slider by ID",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "Slider ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "Slider Name",
+                        "name": "name",
+                        "in": "formData",
+                        "required": true
+                    },
+                    {
+                        "type": "file",
+                        "description": "Slider Image File",
+                        "name": "file",
+                        "in": "formData",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/responses.Response"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/responses.ErrorMessage"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
                         "schema": {
                             "$ref": "#/definitions/responses.ErrorMessage"
                         }
