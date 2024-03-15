@@ -6,6 +6,7 @@ import (
 	"github.com/alifdwt/haiwan-go/internal/domain/requests/category"
 	"github.com/alifdwt/haiwan-go/internal/domain/requests/order"
 	"github.com/alifdwt/haiwan-go/internal/domain/requests/product"
+	"github.com/alifdwt/haiwan-go/internal/domain/requests/review"
 	"github.com/alifdwt/haiwan-go/internal/domain/requests/user"
 	"github.com/alifdwt/haiwan-go/internal/domain/responses"
 	catresponse "github.com/alifdwt/haiwan-go/internal/domain/responses/category"
@@ -58,4 +59,10 @@ type OrderService interface {
 	CreateOrder(userId int, request *order.CreateOrderRequest) (*models.Order, error)
 	GetOrderById(orderId int) (*or.OrderResponse, error)
 	GetOrdersByUser(userId int) (*[]models.Order, error)
+}
+
+type ReviewService interface {
+	GetReviewAll() (*[]models.Review, error)
+	GetReviewById(reviewId int) (*models.Review, error)
+	CreateReview(productId, userId int, request *review.CreateReviewRequest) (*models.Review, error)
 }

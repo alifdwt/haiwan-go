@@ -6,6 +6,7 @@ import (
 	"github.com/alifdwt/haiwan-go/internal/domain/requests/category"
 	"github.com/alifdwt/haiwan-go/internal/domain/requests/order"
 	"github.com/alifdwt/haiwan-go/internal/domain/requests/product"
+	"github.com/alifdwt/haiwan-go/internal/domain/requests/review"
 	"github.com/alifdwt/haiwan-go/internal/domain/requests/user"
 	"github.com/alifdwt/haiwan-go/internal/models"
 )
@@ -55,4 +56,10 @@ type OrderRepository interface {
 	CountOrder() (int, error)
 	SumTotalPrice() (int, error)
 	CalculateYearlyRevenue() ([]int, error)
+}
+
+type ReviewRepository interface {
+	GetReviewAll() (*[]models.Review, error)
+	GetReviewById(reviewId int) (*models.Review, error)
+	CreateReview(request review.CreateReviewRequest, userId int, productId int) (*models.Review, error)
 }

@@ -107,6 +107,13 @@ definitions:
       statusCode:
         type: integer
     type: object
+  review.CreateReviewRequest:
+    properties:
+      comment:
+        type: string
+      rating:
+        type: integer
+    type: object
   user.UpdateUserRequest:
     properties:
       email:
@@ -833,6 +840,82 @@ paths:
       summary: Update product
       tags:
       - Product
+  /review:
+    get:
+      description: Get all reviews
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/responses.Response'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/responses.ErrorMessage'
+      summary: Get all reviews
+      tags:
+      - Review
+  /review/{id}:
+    get:
+      description: Get review by ID
+      parameters:
+      - description: Review ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/responses.Response'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/responses.ErrorMessage'
+      summary: Get review by ID
+      tags:
+      - Review
+  /review/create/{product_id}:
+    post:
+      consumes:
+      - application/json
+      description: Create review
+      parameters:
+      - description: JWT token
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      - description: Product ID
+        in: path
+        name: product_id
+        required: true
+        type: integer
+      - description: Review data
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/review.CreateReviewRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/responses.Response'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/responses.ErrorMessage'
+      summary: Create review
+      tags:
+      - Review
   /user:
     get:
       description: Get all users

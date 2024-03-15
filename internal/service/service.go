@@ -19,6 +19,7 @@ type Service struct {
 	Product  ProductService
 	Cart     CartService
 	Order    OrderService
+	Review   ReviewService
 }
 
 type Deps struct {
@@ -37,5 +38,6 @@ func NewService(deps Deps) *Service {
 		Product:  NewProductService(deps.Repository.Product, deps.Logger, deps.Mapper.ProductMapper),
 		Cart:     NewCartService(deps.Repository.Cart, deps.Logger),
 		Order:    NewOrderService(deps.Repository.Order, deps.Logger, deps.Mapper.OrderMapper),
+		Review:   NewReviewService(deps.Repository.Review),
 	}
 }
