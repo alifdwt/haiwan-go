@@ -6,6 +6,7 @@ import (
 	"github.com/alifdwt/haiwan-go/pkg/auth"
 	"github.com/alifdwt/haiwan-go/pkg/hashing"
 	"github.com/alifdwt/haiwan-go/pkg/logger"
+	"github.com/alifdwt/haiwan-go/pkg/rajaongkir"
 )
 
 type Store interface {
@@ -13,14 +14,15 @@ type Store interface {
 }
 
 type Service struct {
-	Auth     AuthService
-	User     UserService
-	Category CategoryService
-	Product  ProductService
-	Cart     CartService
-	Order    OrderService
-	Review   ReviewService
-	Slider   SliderService
+	Auth       AuthService
+	User       UserService
+	Category   CategoryService
+	Product    ProductService
+	Cart       CartService
+	Order      OrderService
+	Review     ReviewService
+	Slider     SliderService
+	RajaOngkir RajaOngkirService
 }
 
 type Deps struct {
@@ -29,17 +31,19 @@ type Deps struct {
 	Token      auth.TokenManager
 	Logger     logger.Logger
 	Mapper     mapper.Mapper
+	RajaOngkir *rajaongkir.RajaOngkirAPI
 }
 
 func NewService(deps Deps) *Service {
 	return &Service{
-		Auth:     NewAuthService(deps.Repository.User, deps.Hashing, deps.Logger, deps.Token),
-		User:     NewUserService(deps.Repository.User, deps.Hashing, deps.Logger),
-		Category: NewCategoryService(deps.Repository.Category, deps.Mapper.CategoryMapper),
-		Product:  NewProductService(deps.Repository.Product, deps.Logger, deps.Mapper.ProductMapper),
-		Cart:     NewCartService(deps.Repository.Cart, deps.Logger),
-		Order:    NewOrderService(deps.Repository.Order, deps.Logger, deps.Mapper.OrderMapper),
-		Review:   NewReviewService(deps.Repository.Review),
-		Slider:   NewSliderService(deps.Repository.Slider, deps.Logger),
+		Auth:       NewAuthService(deps.Repository.User, deps.Hashing, deps.Logger, deps.Token),
+		User:       NewUserService(deps.Repository.User, deps.Hashing, deps.Logger),
+		Category:   NewCategoryService(deps.Repository.Category, deps.Mapper.CategoryMapper),
+		Product:    NewProductService(deps.Repository.Product, deps.Logger, deps.Mapper.ProductMapper),
+		Cart:       NewCartService(deps.Repository.Cart, deps.Logger),
+		Order:      NewOrderService(deps.Repository.Order, deps.Logger, deps.Mapper.OrderMapper),
+		Review:     NewReviewService(deps.Repository.Review),
+		Slider:     NewSliderService(deps.Repository.Slider, deps.Logger),
+		RajaOngkir: NewRajaOngkirService(deps.RajaOngkir),
 	}
 }

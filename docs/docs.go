@@ -1159,6 +1159,107 @@ const docTemplate = `{
                 }
             }
         },
+        "/rajaongkir/city/{id}": {
+            "get": {
+                "description": "Get list of cities by province ID from RajaOngkir",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "RajaOngkir"
+                ],
+                "summary": "Get cities by province ID from RajaOngkir",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "Province ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/responses.Response"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/responses.ErrorMessage"
+                        }
+                    }
+                }
+            }
+        },
+        "/rajaongkir/cost": {
+            "post": {
+                "description": "Get shipping cost from RajaOngkir",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "RajaOngkir"
+                ],
+                "summary": "Get shipping cost from RajaOngkir",
+                "parameters": [
+                    {
+                        "description": "Request body",
+                        "name": "request",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/rajaongkirrequest.OngkosRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/responses.Response"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/responses.ErrorMessage"
+                        }
+                    }
+                }
+            }
+        },
+        "/rajaongkir/provinsi": {
+            "get": {
+                "description": "Get list of provinces from RajaOngkir",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "RajaOngkir"
+                ],
+                "summary": "Get provinces from RajaOngkir",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/responses.Response"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/responses.ErrorMessage"
+                        }
+                    }
+                }
+            }
+        },
         "/review": {
             "get": {
                 "description": "Get all reviews",
@@ -1791,6 +1892,23 @@ const docTemplate = `{
                     "type": "string"
                 },
                 "provinsi": {
+                    "type": "string"
+                }
+            }
+        },
+        "rajaongkirrequest.OngkosRequest": {
+            "type": "object",
+            "properties": {
+                "asal": {
+                    "type": "string"
+                },
+                "berat": {
+                    "type": "integer"
+                },
+                "kurir": {
+                    "type": "string"
+                },
+                "tujuan": {
                     "type": "string"
                 }
             }

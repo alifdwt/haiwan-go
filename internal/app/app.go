@@ -12,6 +12,7 @@ import (
 	"github.com/alifdwt/haiwan-go/pkg/dotenv"
 	"github.com/alifdwt/haiwan-go/pkg/hashing"
 	"github.com/alifdwt/haiwan-go/pkg/logger"
+	"github.com/alifdwt/haiwan-go/pkg/rajaongkir"
 	"github.com/spf13/viper"
 	"go.uber.org/zap"
 )
@@ -65,6 +66,7 @@ func Run() {
 	}
 
 	mapper := mapper.NewMapper()
+	rajaOngkir := rajaongkir.NewRajaOngkirAPI()
 
 	service := service.NewService(service.Deps{
 		Repository: repository,
@@ -72,6 +74,7 @@ func Run() {
 		Token:      token,
 		Logger:     *log,
 		Mapper:     *mapper,
+		RajaOngkir: rajaOngkir,
 	})
 
 	myHandler := handler.NewHandler(service, *myCloudinary, token)

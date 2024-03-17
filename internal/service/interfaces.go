@@ -6,6 +6,7 @@ import (
 	"github.com/alifdwt/haiwan-go/internal/domain/requests/category"
 	"github.com/alifdwt/haiwan-go/internal/domain/requests/order"
 	"github.com/alifdwt/haiwan-go/internal/domain/requests/product"
+	rajaongkirrequest "github.com/alifdwt/haiwan-go/internal/domain/requests/rajaongkir_request"
 	"github.com/alifdwt/haiwan-go/internal/domain/requests/review"
 	"github.com/alifdwt/haiwan-go/internal/domain/requests/slider"
 	"github.com/alifdwt/haiwan-go/internal/domain/requests/user"
@@ -74,4 +75,10 @@ type SliderService interface {
 	CreateSlider(request slider.CreateSliderRequest) (*models.Slider, error)
 	UpdateSliderById(sliderId int, request slider.UpdateSliderRequest) (*models.Slider, error)
 	DeleteSliderById(sliderId int) (*models.Slider, error)
+}
+
+type RajaOngkirService interface {
+	GetProvince() (map[string]interface{}, error)
+	GetCity(provinceId int) (map[string]interface{}, error)
+	GetCost(request rajaongkirrequest.OngkosRequest) (map[string]interface{}, error)
 }

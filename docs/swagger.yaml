@@ -90,6 +90,17 @@ definitions:
       provinsi:
         type: string
     type: object
+  rajaongkirrequest.OngkosRequest:
+    properties:
+      asal:
+        type: string
+      berat:
+        type: integer
+      kurir:
+        type: string
+      tujuan:
+        type: string
+    type: object
   responses.ErrorMessage:
     properties:
       error:
@@ -867,6 +878,72 @@ paths:
       summary: Update product
       tags:
       - Product
+  /rajaongkir/city/{id}:
+    get:
+      description: Get list of cities by province ID from RajaOngkir
+      parameters:
+      - description: Province ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/responses.Response'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/responses.ErrorMessage'
+      summary: Get cities by province ID from RajaOngkir
+      tags:
+      - RajaOngkir
+  /rajaongkir/cost:
+    post:
+      consumes:
+      - application/json
+      description: Get shipping cost from RajaOngkir
+      parameters:
+      - description: Request body
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/rajaongkirrequest.OngkosRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/responses.Response'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/responses.ErrorMessage'
+      summary: Get shipping cost from RajaOngkir
+      tags:
+      - RajaOngkir
+  /rajaongkir/provinsi:
+    get:
+      description: Get list of provinces from RajaOngkir
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/responses.Response'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/responses.ErrorMessage'
+      summary: Get provinces from RajaOngkir
+      tags:
+      - RajaOngkir
   /review:
     get:
       description: Get all reviews
