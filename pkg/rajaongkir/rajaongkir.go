@@ -13,7 +13,7 @@ type RajaOngkirAPI struct {
 }
 
 func NewRajaOngkirAPI() *RajaOngkirAPI {
-	config, err := dotenv.LoadConfig("../..")
+	config, err := dotenv.LoadConfig(".")
 	if err != nil {
 		log.Error("cannot load .env file", err)
 	}

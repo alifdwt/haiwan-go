@@ -47,6 +47,19 @@ definitions:
           type: integer
         type: array
     type: object
+  midtransrequest.CreateMidtransRequest:
+    properties:
+      email:
+        type: string
+      first_name:
+        type: string
+      gross_amount:
+        type: integer
+      last_name:
+        type: string
+      phone:
+        type: string
+    type: object
   order.CartItemRequest:
     properties:
       name:
@@ -532,6 +545,34 @@ paths:
       summary: Update category by ID
       tags:
       - Category
+  /midtrans/create-transaction:
+    post:
+      consumes:
+      - application/json
+      description: Create a new transaction
+      parameters:
+      - description: Request body to create a new transaction
+        in: body
+        name: createMidtransRequest
+        required: true
+        schema:
+          $ref: '#/definitions/midtransrequest.CreateMidtransRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/responses.Response'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/responses.ErrorMessage'
+      security:
+      - BearerAuth: []
+      summary: Create transaction
+      tags:
+      - Midtrans
   /order:
     get:
       description: Retrieve all orders

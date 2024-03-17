@@ -59,4 +59,5 @@ func (h *Handler) InitApi(router *fiber.App) {
 	h.initReviewGroup(router)
 	h.initSliderGroup(router)
 	h.initRajaongkirGroup(router)
+	h.initMidtransGroup(router)
 }

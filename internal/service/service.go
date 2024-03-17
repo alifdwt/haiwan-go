@@ -6,6 +6,7 @@ import (
 	"github.com/alifdwt/haiwan-go/pkg/auth"
 	"github.com/alifdwt/haiwan-go/pkg/hashing"
 	"github.com/alifdwt/haiwan-go/pkg/logger"
+	midtranspkg "github.com/alifdwt/haiwan-go/pkg/midtrans_pkg"
 	"github.com/alifdwt/haiwan-go/pkg/rajaongkir"
 )
 
@@ -23,6 +24,7 @@ type Service struct {
 	Review     ReviewService
 	Slider     SliderService
 	RajaOngkir RajaOngkirService
+	Midtrans   MidtransService
 }
 
 type Deps struct {
@@ -32,6 +34,7 @@ type Deps struct {
 	Logger     logger.Logger
 	Mapper     mapper.Mapper
 	RajaOngkir *rajaongkir.RajaOngkirAPI
+	Snap       *midtranspkg.SnapClient
 }
 
 func NewService(deps Deps) *Service {
@@ -45,5 +48,6 @@ func NewService(deps Deps) *Service {
 		Review:     NewReviewService(deps.Repository.Review),
 		Slider:     NewSliderService(deps.Repository.Slider, deps.Logger),
 		RajaOngkir: NewRajaOngkirService(deps.RajaOngkir),
+		Midtrans:   NewMidtransService(deps.Snap),
 	}
 }

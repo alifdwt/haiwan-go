@@ -4,6 +4,7 @@ import (
 	"github.com/alifdwt/haiwan-go/internal/domain/requests/auth"
 	"github.com/alifdwt/haiwan-go/internal/domain/requests/cart"
 	"github.com/alifdwt/haiwan-go/internal/domain/requests/category"
+	midtransrequest "github.com/alifdwt/haiwan-go/internal/domain/requests/midtrans_request"
 	"github.com/alifdwt/haiwan-go/internal/domain/requests/order"
 	"github.com/alifdwt/haiwan-go/internal/domain/requests/product"
 	rajaongkirrequest "github.com/alifdwt/haiwan-go/internal/domain/requests/rajaongkir_request"
@@ -15,6 +16,7 @@ import (
 	or "github.com/alifdwt/haiwan-go/internal/domain/responses/order"
 	pro "github.com/alifdwt/haiwan-go/internal/domain/responses/product"
 	"github.com/alifdwt/haiwan-go/internal/models"
+	"github.com/midtrans/midtrans-go/snap"
 )
 
 type AuthService interface {
@@ -81,4 +83,8 @@ type RajaOngkirService interface {
 	GetProvince() (map[string]interface{}, error)
 	GetCity(provinceId int) (map[string]interface{}, error)
 	GetCost(request rajaongkirrequest.OngkosRequest) (map[string]interface{}, error)
+}
+
+type MidtransService interface {
+	CreateTransaction(request *midtransrequest.CreateMidtransRequest) (*snap.Response, error)
 }
