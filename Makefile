@@ -7,4 +7,7 @@ swag:
 mock:
 	mockgen -package mockdb -source internal/service/interfaces.go -destination internal/mock/service.go ...
 
-.PHONY: server swag mock
+fe-admin:
+	cd web/admin && npm run dev
+
+.PHONY: server swag mock fe-admin
