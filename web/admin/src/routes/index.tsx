@@ -2,6 +2,7 @@ import { Toaster } from "@/components/ui/toaster";
 import Layout from "@/layouts";
 import LandingLayout from "@/layouts/Landing/Landing";
 import Home from "@/pages/Home";
+import SliderPage from "@/pages/Slider/Slider";
 import LoginPage from "@/pages/auth/Login";
 import RegisterPage from "@/pages/auth/Register";
 import { RootState } from "@/store";
@@ -20,6 +21,7 @@ export default function Routes() {
       <RouterRoutes>
         <Route element={access_token ? <Layout /> : <Navigate to="/" />}>
           <Route path="/dashboard" element={<div>Dashboard</div>} />
+          <Route path="/sliders" element={<SliderPage />} />
         </Route>
         <Route
           element={

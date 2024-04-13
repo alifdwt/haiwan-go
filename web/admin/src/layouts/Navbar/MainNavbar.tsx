@@ -11,8 +11,8 @@ export default function MainNav({
       path: "/dashboard",
     },
     {
-      name: "Billboards",
-      path: "/billboards",
+      name: "Sliders",
+      path: "/sliders",
     },
     {
       name: "Categories",
@@ -36,7 +36,7 @@ export default function MainNav({
           href={route.path}
           className={cn(
             "text-sm font-medium text-muted-foreground",
-            currentUrl === route.path ? "font-bold" : ""
+            currentUrl === route.path ? "font-bold text-secondary" : ""
           )}
         >
           {route.name}

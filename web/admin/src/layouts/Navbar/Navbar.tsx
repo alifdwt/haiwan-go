@@ -4,9 +4,12 @@ import LogOutButton from "./components/LogoutButton";
 
 export default function Navbar() {
   return (
-    <div className="border-b">
+    <div className="border-b bg-primary">
       <div className="flex h-16 items-center px-4">
-        <PawPrintIcon size={24} className="text-secondary" />
+        <div className="flex gap-x-2 items-center">
+          <PawPrintIcon size={24} className="text-secondary" />
+          <p className="font-bold text-xl text-white">Haiwan</p>
+        </div>
         <MainNav className="mx-4" />
         <LogOutButton />
       </div>
