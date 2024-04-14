@@ -1113,6 +1113,8 @@ paths:
           description: Internal Server Error
           schema:
             $ref: '#/definitions/responses.ErrorMessage'
+      security:
+      - BearerAuth: []
       summary: Create a new slider
       tags:
       - Slider

@@ -36,7 +36,7 @@ export default function MainNav({
           href={route.path}
           className={cn(
             "text-sm font-medium text-muted-foreground",
-            currentUrl === route.path ? "font-bold text-secondary" : ""
+            currentUrl.includes(route.path) ? "font-bold text-secondary" : ""
           )}
         >
           {route.name}

@@ -18,7 +18,7 @@ export const SliderClient: React.FC<SliderClientProps> = ({ data }) => {
           title={`Slider (${data.length})`}
           description="Lihat dan atur slidermu"
         />
-        <a href="/slider/create">
+        <a href="/sliders/create">
           <Button variant={"secondary"}>+ Tambah Slider</Button>
         </a>
       </div>

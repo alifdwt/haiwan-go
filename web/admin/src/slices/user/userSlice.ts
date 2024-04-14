@@ -28,6 +28,10 @@ export const userSlice = createSlice({
       const decodedUser = decodeToken(action.payload.access_token);
       state.user = decodedUser !== null ? decodedUser : undefined;
     },
+    updateTokenAsync: (state, action) => {
+      state.access_token = action.payload.access_token;
+      state.refresh_token = action.payload.refresh_token;
+    },
     logout: (state) => {
       state.user = undefined;
       state.access_token = undefined;
@@ -36,6 +40,6 @@ export const userSlice = createSlice({
   },
 });
 
-export const { login, setUser, logout } = userSlice.actions;
+export const { login, setUser, updateTokenAsync, logout } = userSlice.actions;
 
 export default userSlice.reducer;

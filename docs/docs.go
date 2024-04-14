@@ -1454,6 +1454,11 @@ const docTemplate = `{
         },
         "/slider/create": {
             "post": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
                 "description": "Create a new slider",
                 "consumes": [
                     "multipart/form-data"

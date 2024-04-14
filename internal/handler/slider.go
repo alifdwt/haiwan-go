@@ -90,6 +90,7 @@ func (h *Handler) handlerSliderById(c *fiber.Ctx) error {
 // @Accept multipart/form-data
 // @Param name formData string true "Slider Name"
 // @Param file formData file true "Slider Image File"
+// @Security BearerAuth
 // @Produce json
 // @Success 200 {object} responses.Response
 // @Failure 400 {object} responses.ErrorMessage

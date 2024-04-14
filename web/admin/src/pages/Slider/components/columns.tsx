@@ -1,10 +1,12 @@
-import { Button } from "@/components/ui/button";
+import { TimeConverter } from "@/lib/converter";
 import { ColumnDef } from "@tanstack/react-table";
+import { CellAction } from "./cell-action";
 
 export type SliderColumns = {
   id: number;
   name: string;
-  created_at: string;
+  image: string;
+  CreatedAt: string;
 };
 
 export const columns: ColumnDef<SliderColumns>[] = [
@@ -13,11 +15,28 @@ export const columns: ColumnDef<SliderColumns>[] = [
     header: "Name",
   },
   {
-    accessorKey: "created_at",
+    accessorKey: "image",
+    header: "Image",
+    cell: ({ row }) => {
+      return (
+        <img
+          src={row.original.image}
+          alt={row.original.name}
+          className="h-12 object-cover"
+        />
+      );
+    },
+  },
+  {
+    accessorKey: "CreatedAt",
     header: "Created At",
+    cell: ({ row }) => {
+      const time = TimeConverter(row.original.CreatedAt);
+      return <p>{time}</p>;
+    },
   },
   {
     id: "actions",
-    cell: () => <Button>Edit</Button>,
+    cell: ({ row }) => <CellAction data={row.original} />,
   },
 ];
