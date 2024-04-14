@@ -4,6 +4,7 @@ import { Heading } from "@/components/ui/heading";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { DataTable } from "@/components/ui/data-table";
+import { ApiList } from "@/components/ui/api-list";
 
 interface SliderClientProps {
   data: SliderColumns[];
@@ -25,6 +26,7 @@ export const SliderClient: React.FC<SliderClientProps> = ({ data }) => {
       <DataTable searchKey="name" columns={columns} data={data} />
       <Heading title="API" description="Dokumentasi API untuk slider" />
       <Separator />
+      <ApiList entityName="slider" entityIdName="sliderId" />
     </>
   );
 };
