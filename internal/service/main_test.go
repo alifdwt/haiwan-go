@@ -9,6 +9,7 @@ import (
 	"github.com/alifdwt/haiwan-go/pkg/auth"
 	"github.com/alifdwt/haiwan-go/pkg/database/migration"
 	"github.com/alifdwt/haiwan-go/pkg/database/postgres"
+	"github.com/alifdwt/haiwan-go/pkg/dotenv"
 	"github.com/alifdwt/haiwan-go/pkg/hashing"
 	"github.com/alifdwt/haiwan-go/pkg/logger"
 	"github.com/spf13/viper"
@@ -23,7 +24,12 @@ func TestMain(m *testing.M) {
 		log.Error("Error while initializing logger", zap.Error(err))
 	}
 
-	db, err := postgres.NewClientTest()
+	err = dotenv.Viper("../..")
+	if err != nil {
+		log.Error("Error while loading .env fie", zap.Error(err))
+	}
+
+	db, err := postgres.NewClient()
 	if err != nil {
 		log.Error("Error while connecting to database test", zap.Error(err))
 	}

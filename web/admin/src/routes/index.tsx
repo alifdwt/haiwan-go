@@ -4,6 +4,7 @@ import LandingLayout from "@/layouts/Landing/Landing";
 import CategoryPage from "@/pages/Category/Category";
 import CategoryActionPage from "@/pages/Category/Create/Create";
 import Home from "@/pages/Home";
+import ProductsPage from "@/pages/Product/Product";
 import CreateSliderPage from "@/pages/Slider/Create/Create";
 import SliderPage from "@/pages/Slider/Slider";
 import LoginPage from "@/pages/auth/Login";
@@ -31,6 +32,7 @@ export default function Routes() {
             path="/categories/:categoryId"
             element={<CategoryActionPage />}
           />
+          <Route path="/products" element={<ProductsPage />} />
         </Route>
         <Route
           element={

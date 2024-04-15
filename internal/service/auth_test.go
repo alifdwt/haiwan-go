@@ -6,14 +6,16 @@ import (
 	"github.com/alifdwt/haiwan-go/internal/domain/requests/auth"
 	"github.com/alifdwt/haiwan-go/internal/models"
 	"github.com/alifdwt/haiwan-go/pkg/random"
+	"github.com/gosimple/slug"
 	"github.com/stretchr/testify/require"
 )
 
 func createRandomUser(t *testing.T) (userData models.User, userPassword string) {
 	password := random.RandomString(6)
+	name := random.RandomOwner()
 	arg := &auth.RegisterRequest{
-		Name:             random.RandomOwner(),
-		Email:            random.RandomEmail(),
+		Name:             name,
+		Email:            random.RandomEmail(slug.Make(name)),
 		Password:         password,
 		Confirm_password: password,
 	}

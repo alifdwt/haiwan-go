@@ -27,6 +27,7 @@ func (m *productMapper) ToProductResponse(request *models.Product) *product.Prod
 		CategoryID:   int(request.CategoryID),
 		CreatedAt:    request.CreatedAt.String(),
 		UpdatedAt:    request.UpdatedAt.String(),
+		Category:     *NewCategoryMapper().ToCategoryResponse(&request.Category),
 	}
 }
 

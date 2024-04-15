@@ -1,4 +1,4 @@
-package random
+package util
 
 import (
 	"fmt"
@@ -14,12 +14,8 @@ import (
 
 const alphabet = "abcdefghijklmnopqrstuvwxyz"
 
-func RandomInt(min, max int) int {
-	return int(rand.Intn(max-min) + min)
-}
-
-func RandomMoney() int {
-	return int(RandomInt(100, 1000))
+func RandomInt(min, max int) int64 {
+	return int64(rand.Intn(max-min) + min)
 }
 
 func RandomString(n int) string {
@@ -51,28 +47,20 @@ func RandomBirthDate(age int) time.Time {
 	return time.Now().AddDate(-age, 0, 0)
 }
 
-// func RandomProfilePictureUrl() string {
-// 	var gender string
-// 	randomNumber := rand.Intn(2)
-// 	if randomNumber == 0 {
-// 		gender = "women"
-// 	} else {
-// 		gender = "men"
-// 	}
+func RandomProfilePictureUrl() string {
+	var gender string
+	randomNumber := rand.Intn(2)
+	if randomNumber == 0 {
+		gender = "women"
+	} else {
+		gender = "men"
+	}
 
-// 	return fmt.Sprintf("https://randomuser.me/api/portraits/%s/%d.jpg", gender, RandomInt(0, 99))
-// }
-
-func RandomProductPhotoUrl() string {
-	return fmt.Sprintf("https://picsum.photos/id/%d/720", RandomInt(0, 100))
+	return fmt.Sprintf("https://randomuser.me/api/portraits/%s/%d.jpg", gender, RandomInt(0, 99))
 }
 
-func RandomFaviconUrl() string {
-	return fmt.Sprintf("https://picsum.photos/id/%d/32/32", RandomInt(0, 100))
-}
-
-func RandomSliderPhotoUrl() string {
-	return fmt.Sprintf("https://picsum.photos/id/%d/1208/302", RandomInt(0, 100))
+func RandomPhotoUrl() string {
+	return fmt.Sprintf("https://picsum.photos/id/%d/1280/720", RandomInt(0, 100))
 }
 
 func RandomWords(wordCount int) string {

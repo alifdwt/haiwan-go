@@ -23,7 +23,7 @@ func (r *productRepository) GetProductAll() (*[]models.Product, error) {
 
 	db := r.db.Model(&products)
 
-	checkProduct := db.Debug().Find(&products)
+	checkProduct := db.Debug().Preload("Category").Find(&products)
 	if checkProduct.RowsAffected < 1 {
 		return nil, errors.New("there is no products yet")
 	}

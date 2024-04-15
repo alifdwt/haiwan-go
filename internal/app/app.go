@@ -37,7 +37,7 @@ func Run() {
 		log.Error("Error while initializing logger", zap.Error(err))
 	}
 
-	err = dotenv.Viper()
+	err = dotenv.Viper(".")
 	if err != nil {
 		log.Error("Error while loading .env fie", zap.Error(err))
 	}

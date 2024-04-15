@@ -14,19 +14,19 @@ import (
 func createRandomProduct(t *testing.T, categoryId uint) pro.ProductResponse {
 	categoryIdStr := fmt.Sprint(categoryId)
 	productName := random.RandomOwner()
-	rating := int(random.RandomInt(3, 5))
+	rating := random.RandomInt(3, 5)
 	description := loremipsum.New().Paragraph()
 
 	arg := &proreq.CreateProductRequest{
 		Name:         productName,
 		CategoryID:   categoryIdStr,
 		Description:  description,
-		Price:        int(random.RandomMoney()),
-		CountInStock: int(random.RandomInt(1, 10)),
-		Weight:       int(random.RandomInt(500, 1000)),
+		Price:        random.RandomMoney(),
+		CountInStock: random.RandomInt(1, 10),
+		Weight:       random.RandomInt(500, 1000),
 		Brand:        random.RandomString(6),
 		Rating:       &rating,
-		FilePath:     "https://picsum.photos/960/540",
+		FilePath:     random.RandomProductPhotoUrl(),
 	}
 
 	product, err := testQueries.Product.CreateProduct(arg)

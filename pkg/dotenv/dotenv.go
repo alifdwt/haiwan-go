@@ -1,9 +1,13 @@
 package dotenv
 
-import "github.com/spf13/viper"
+import (
+	"fmt"
 
-func Viper() error {
-	viper.SetConfigFile(".env")
+	"github.com/spf13/viper"
+)
+
+func Viper(path string) error {
+	viper.SetConfigFile(fmt.Sprintf("%s/.env", path))
 	viper.AutomaticEnv()
 
 	err := viper.ReadInConfig()

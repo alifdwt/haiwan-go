@@ -6,6 +6,7 @@ import (
 
 	"github.com/alifdwt/haiwan-go/internal/domain/requests/user"
 	"github.com/alifdwt/haiwan-go/pkg/random"
+	"github.com/gosimple/slug"
 	"github.com/stretchr/testify/require"
 )
 
@@ -44,9 +45,10 @@ func TestGetUserById(t *testing.T) {
 
 func TestUpdateUserById(t *testing.T) {
 	user1, _ := createRandomUser(t)
+	name := random.RandomOwner()
 	arg := &user.UpdateUserRequest{
-		Name:     random.RandomOwner(),
-		Email:    random.RandomEmail(),
+		Name:     name,
+		Email:    random.RandomEmail(slug.Make(name)),
 		Password: random.RandomString(6),
 	}
 

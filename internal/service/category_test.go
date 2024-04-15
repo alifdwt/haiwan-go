@@ -13,7 +13,7 @@ import (
 func createRandomCategory(t *testing.T) catresponse.CategoryResponse {
 	arg := &category.CreateCategoryRequest{
 		Name:     random.RandomOwner(),
-		FilePath: "https://picsum.photos/200",
+		FilePath: random.RandomFaviconUrl(),
 	}
 
 	category, err := testQueries.Category.CreateCategory(arg)
@@ -93,7 +93,7 @@ func TestUpdateCategoryById(t *testing.T) {
 	category1 := createRandomCategory(t)
 	arg := &category.UpdateCategoryRequest{
 		Name:     random.RandomOwner(),
-		FilePath: "https://picsum.photos/300",
+		FilePath: random.RandomFaviconUrl(),
 	}
 
 	category2, err := testQueries.Category.UpdateCategoryById(int(category1.ID), arg)
