@@ -185,33 +185,6 @@ paths:
       summary: Delete many carts
       tags:
       - Cart
-  /api/slider/{id}:
-    get:
-      description: Get slider by ID
-      parameters:
-      - description: Slider ID
-        in: path
-        name: id
-        required: true
-        type: integer
-      produces:
-      - application/json
-      responses:
-        "200":
-          description: OK
-          schema:
-            $ref: '#/definitions/responses.Response'
-        "400":
-          description: Bad Request
-          schema:
-            $ref: '#/definitions/responses.ErrorMessage'
-        "500":
-          description: Internal Server Error
-          schema:
-            $ref: '#/definitions/responses.ErrorMessage'
-      summary: Get slider by ID
-      tags:
-      - Slider
   /auth/hello:
     get:
       description: Return a greeting message to the user
@@ -1082,6 +1055,35 @@ paths:
       summary: Get all sliders
       tags:
       - Slider
+  /slider/{id}:
+    get:
+      description: Get slider by ID
+      parameters:
+      - description: Slider ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/responses.Response'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/responses.ErrorMessage'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/responses.ErrorMessage'
+      security:
+      - BearerAuth: []
+      summary: Get slider by ID
+      tags:
+      - Slider
   /slider/create:
     post:
       consumes:
@@ -1142,6 +1144,8 @@ paths:
           description: Internal Server Error
           schema:
             $ref: '#/definitions/responses.ErrorMessage'
+      security:
+      - BearerAuth: []
       summary: Delete slider by ID
       tags:
       - Slider
@@ -1181,6 +1185,8 @@ paths:
           description: Internal Server Error
           schema:
             $ref: '#/definitions/responses.ErrorMessage'
+      security:
+      - BearerAuth: []
       summary: Update slider by ID
       tags:
       - Slider

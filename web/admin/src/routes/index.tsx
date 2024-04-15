@@ -23,7 +23,7 @@ export default function Routes() {
         <Route element={access_token ? <Layout /> : <Navigate to="/" />}>
           <Route path="/dashboard" element={<div>Dashboard</div>} />
           <Route path="/sliders" element={<SliderPage />} />
-          <Route path="/sliders/create" element={<CreateSliderPage />} />
+          <Route path="/sliders/:sliderId" element={<CreateSliderPage />} />
         </Route>
         <Route
           element={

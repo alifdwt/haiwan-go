@@ -3,7 +3,7 @@ import { ColumnDef } from "@tanstack/react-table";
 import { CellAction } from "./cell-action";
 
 export type SliderColumns = {
-  id: number;
+  ID: number;
   name: string;
   image: string;
   CreatedAt: string;

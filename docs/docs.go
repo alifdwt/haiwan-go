@@ -64,47 +64,6 @@ const docTemplate = `{
                 }
             }
         },
-        "/api/slider/{id}": {
-            "get": {
-                "description": "Get slider by ID",
-                "produces": [
-                    "application/json"
-                ],
-                "tags": [
-                    "Slider"
-                ],
-                "summary": "Get slider by ID",
-                "parameters": [
-                    {
-                        "type": "integer",
-                        "description": "Slider ID",
-                        "name": "id",
-                        "in": "path",
-                        "required": true
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/responses.Response"
-                        }
-                    },
-                    "400": {
-                        "description": "Bad Request",
-                        "schema": {
-                            "$ref": "#/definitions/responses.ErrorMessage"
-                        }
-                    },
-                    "500": {
-                        "description": "Internal Server Error",
-                        "schema": {
-                            "$ref": "#/definitions/responses.ErrorMessage"
-                        }
-                    }
-                }
-            }
-        },
         "/auth/hello": {
             "get": {
                 "description": "Return a greeting message to the user",
@@ -1510,6 +1469,11 @@ const docTemplate = `{
         },
         "/slider/delete/{id}": {
             "delete": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
                 "description": "Delete slider by ID",
                 "produces": [
                     "application/json"
@@ -1551,6 +1515,11 @@ const docTemplate = `{
         },
         "/slider/update/{id}": {
             "put": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
                 "description": "Update slider by ID",
                 "consumes": [
                     "multipart/form-data"
@@ -1582,6 +1551,52 @@ const docTemplate = `{
                         "description": "Slider Image File",
                         "name": "file",
                         "in": "formData",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/responses.Response"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/responses.ErrorMessage"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/responses.ErrorMessage"
+                        }
+                    }
+                }
+            }
+        },
+        "/slider/{id}": {
+            "get": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "Get slider by ID",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Slider"
+                ],
+                "summary": "Get slider by ID",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "Slider ID",
+                        "name": "id",
+                        "in": "path",
                         "required": true
                     }
                 ],

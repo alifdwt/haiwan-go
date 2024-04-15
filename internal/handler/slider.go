@@ -51,11 +51,12 @@ func (h *Handler) handlerSliderAll(c *fiber.Ctx) error {
 // @Description Get slider by ID
 // @Tags Slider
 // @Param id path integer true "Slider ID"
+// @Security BearerAuth
 // @Produce json
 // @Success 200 {object} responses.Response
 // @Failure 400 {object} responses.ErrorMessage
 // @Failure 500 {object} responses.ErrorMessage
-// @Router /api/slider/{id} [get]
+// @Router /slider/{id} [get]
 func (h *Handler) handlerSliderById(c *fiber.Ctx) error {
 	sliderIdStr := c.Params("id")
 
@@ -155,6 +156,7 @@ func (h *Handler) handlerCreateSlider(c *fiber.Ctx) error {
 // @Param id path integer true "Slider ID"
 // @Param name formData string true "Slider Name"
 // @Param file formData file true "Slider Image File"
+// @Security BearerAuth
 // @Produce json
 // @Success 200 {object} responses.Response
 // @Failure 400 {object} responses.ErrorMessage
@@ -226,6 +228,7 @@ func (h *Handler) handlerSliderUpdate(c *fiber.Ctx) error {
 // @Description Delete slider by ID
 // @Tags Slider
 // @Param id path integer true "Slider ID"
+// @Security BearerAuth
 // @Produce json
 // @Success 200 {object} responses.Response
 // @Failure 400 {object} responses.ErrorMessage
