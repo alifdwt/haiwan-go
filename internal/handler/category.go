@@ -7,6 +7,7 @@ import (
 	"github.com/alifdwt/haiwan-go/internal/domain/responses"
 	"github.com/alifdwt/haiwan-go/internal/middleware"
 	"github.com/gofiber/fiber/v2"
+	"github.com/gosimple/slug"
 )
 
 func (h *Handler) initCategoryGroup(api *fiber.App) {
@@ -151,7 +152,7 @@ func (h *Handler) handlerCategoryCreate(c *fiber.Ctx) error {
 	}
 	defer uploadedFile.Close()
 
-	imageUrl, err := h.cloudinary.UploadToCloudinary(uploadedFile, file.Filename)
+	imageUrl, err := h.cloudinary.UploadToCloudinary(uploadedFile, slug.Make(name))
 	if err != nil {
 		return c.Status(fiber.StatusInternalServerError).JSON(
 			responses.ErrorMessage{

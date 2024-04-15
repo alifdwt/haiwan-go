@@ -1,6 +1,8 @@
 import { Toaster } from "@/components/ui/toaster";
 import Layout from "@/layouts";
 import LandingLayout from "@/layouts/Landing/Landing";
+import CategoryPage from "@/pages/Category/Category";
+import CategoryActionPage from "@/pages/Category/Create/Create";
 import Home from "@/pages/Home";
 import CreateSliderPage from "@/pages/Slider/Create/Create";
 import SliderPage from "@/pages/Slider/Slider";
@@ -24,6 +26,11 @@ export default function Routes() {
           <Route path="/dashboard" element={<div>Dashboard</div>} />
           <Route path="/sliders" element={<SliderPage />} />
           <Route path="/sliders/:sliderId" element={<CreateSliderPage />} />
+          <Route path="/categories" element={<CategoryPage />} />
+          <Route
+            path="/categories/:categoryId"
+            element={<CategoryActionPage />}
+          />
         </Route>
         <Route
           element={

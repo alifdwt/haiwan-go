@@ -1,20 +1,20 @@
 import { useToast } from "@/components/ui/use-toast";
-import { SliderColumns } from "./columns";
+import { CategoryColumns } from "./columns";
+import { useNavigate } from "react-router-dom";
 import { AlertModal } from "@/components/modals/alert-modals";
+import useDeleteCategory from "../hooks/useDeleteCategory";
 import {
   DropdownMenu,
   DropdownMenuContent,
+  DropdownMenuItem,
   DropdownMenuLabel,
   DropdownMenuTrigger,
-  DropdownMenuItem,
 } from "@/components/ui/dropdown-menu";
 import { Button } from "@/components/ui/button";
 import { CopyIcon, EditIcon, MoreHorizontal, TrashIcon } from "lucide-react";
-import { useNavigate } from "react-router-dom";
-import useDeleteSlider from "../Create/components/hooks/DeleteSlider";
 
 interface CellActionProps {
-  data: SliderColumns;
+  data: CategoryColumns;
 }
 
 export const CellAction: React.FC<CellActionProps> = ({ data }) => {
@@ -25,12 +25,12 @@ export const CellAction: React.FC<CellActionProps> = ({ data }) => {
     navigator.clipboard.writeText(id.toString());
     toast({
       title: "Tersalin",
-      description: "ID dari Slider berhasil disalin",
+      description: "ID dari Kategori berhasil disalin",
     });
   };
 
-  const { handleDeleteSlider, isLoading, open, setOpen } = useDeleteSlider(
-    data.ID
+  const { handleDeleteCategory, isLoading, open, setOpen } = useDeleteCategory(
+    data.id
   );
 
   return (
@@ -38,7 +38,7 @@ export const CellAction: React.FC<CellActionProps> = ({ data }) => {
       <AlertModal
         isOpen={open}
         onClose={() => setOpen(false)}
-        onConfirm={handleDeleteSlider}
+        onConfirm={handleDeleteCategory}
         loading={isLoading}
       />
       <DropdownMenu>
@@ -49,24 +49,24 @@ export const CellAction: React.FC<CellActionProps> = ({ data }) => {
           </Button>
         </DropdownMenuTrigger>
         <DropdownMenuContent>
-          <DropdownMenuLabel>Actions</DropdownMenuLabel>
+          <DropdownMenuLabel>Fungsi</DropdownMenuLabel>
           <DropdownMenuItem
-            onClick={() => onCopy(data.ID)}
+            onClick={() => onCopy(data.id)}
             className="cursor-pointer"
           >
             <CopyIcon className="mr-2 h-4 w-4" />
-            Salin Id
+            Salin ID
           </DropdownMenuItem>
           <DropdownMenuItem
+            onClick={() => navigate(`/categories/${data.id}`)}
             className="cursor-pointer"
-            onClick={() => navigate(`/sliders/${data.ID}`)}
           >
             <EditIcon className="mr-2 h-4 w-4" />
             Ubah
           </DropdownMenuItem>
           <DropdownMenuItem
-            className="cursor-pointer"
             onClick={() => setOpen(true)}
+            className="cursor-pointer"
           >
             <TrashIcon className="mr-2 h-4 w-4" />
             Hapus
