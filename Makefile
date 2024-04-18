@@ -8,6 +8,6 @@ mock:
 	mockgen -package mockdb -source internal/service/interfaces.go -destination internal/mock/service.go ...
 
 fe-admin:
-	cd web/admin && npm run dev
+	cd web/admin && npm install && npm run dev
 
 .PHONY: server swag mock fe-admin

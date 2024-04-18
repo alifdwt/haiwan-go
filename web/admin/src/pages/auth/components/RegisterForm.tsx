@@ -1,4 +1,3 @@
-import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -15,12 +14,13 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import { useMutation } from "@tanstack/react-query";
 
 const formSchema = z.object({
   name: z.string().min(1, { message: "Name is required" }),
   email: z.string().min(1, { message: "Email is required" }),
   password: z.string().min(1, { message: "Password is required" }),
-  confirmPassword: z
+  confirm_password: z
     .string()
     .min(1, { message: "Confirm password is required" }),
 });
@@ -32,8 +32,6 @@ interface RegisterFormProps {
 }
 
 export const RegisterForm: React.FC<RegisterFormProps> = ({ initialData }) => {
-  const [loading, setLoading] = useState(false);
-
   const navigate = useNavigate();
   const { toast } = useToast();
 
@@ -42,20 +40,30 @@ export const RegisterForm: React.FC<RegisterFormProps> = ({ initialData }) => {
     defaultValues: initialData || {},
   });
 
+  const mutation = useMutation({
+    mutationFn: (data: RegisterFormValues) => {
+      return myApi.post("/auth/register", data);
+    },
+  });
+
   const onSubmit = (data: RegisterFormValues) => {
-    try {
-      setLoading(true);
-      myApi.post("/auth/register", data);
-      toast({
-        title: "Register Success",
-        description: "Please login to continue",
-      });
-      navigate("/auth/login");
-    } catch (error) {
-      toast({ title: "Register Failed", description: `${error}` });
-    } finally {
-      setLoading(false);
-    }
+    mutation.mutate(data, {
+      onSuccess: () => {
+        toast({
+          title: "Register berhasil",
+          description: "Selamat datang kembali",
+        });
+        navigate("/login");
+      },
+      onError: (error) => {
+        console.log(error);
+        toast({
+          title: "Register gagal",
+          // @ts-expect-error next-line
+          description: `${error.response.data.message}`,
+        });
+      },
+    });
   };
 
   return (
@@ -70,7 +78,7 @@ export const RegisterForm: React.FC<RegisterFormProps> = ({ initialData }) => {
                 <FormLabel className="text-white">Name</FormLabel>
                 <FormControl>
                   <Input
-                    disabled={loading}
+                    disabled={mutation.isPending}
                     placeholder="Isi dengan nama Anda"
                     {...field}
                   />
@@ -87,7 +95,7 @@ export const RegisterForm: React.FC<RegisterFormProps> = ({ initialData }) => {
                 <FormLabel className="text-white">Email</FormLabel>
                 <FormControl>
                   <Input
-                    disabled={loading}
+                    disabled={mutation.isPending}
                     placeholder="Isi dengan email Anda"
                     {...field}
                   />
@@ -105,7 +113,7 @@ export const RegisterForm: React.FC<RegisterFormProps> = ({ initialData }) => {
                   <FormLabel className="text-white">Password</FormLabel>
                   <FormControl>
                     <Input
-                      disabled={loading}
+                      disabled={mutation.isPending}
                       type="password"
                       placeholder="Isi dengan password Anda"
                       {...field}
@@ -117,13 +125,13 @@ export const RegisterForm: React.FC<RegisterFormProps> = ({ initialData }) => {
             />
             <FormField
               control={form.control}
-              name="confirmPassword"
+              name="confirm_password"
               render={({ field }) => (
                 <FormItem>
                   <FormLabel className="text-white">Confirm Password</FormLabel>
                   <FormControl>
                     <Input
-                      disabled={loading}
+                      disabled={mutation.isPending}
                       type="password"
                       placeholder="Isi dengan password Anda"
                       {...field}
@@ -135,7 +143,7 @@ export const RegisterForm: React.FC<RegisterFormProps> = ({ initialData }) => {
             />
           </div>
           <Button
-            disabled={loading}
+            disabled={mutation.isPending}
             type="submit"
             className="w-full"
             variant={"secondary"}
