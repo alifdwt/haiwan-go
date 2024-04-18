@@ -10,4 +10,7 @@ mock:
 fe-admin:
 	cd web/admin && npm install && npm run dev
 
+fe-shop:
+	cd web/shop && npm install && npm run dev
+
 .PHONY: server swag mock fe-admin
