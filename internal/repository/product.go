@@ -36,7 +36,7 @@ func (r *productRepository) GetProductBySlug(slug string) (*models.Product, erro
 
 	db := r.db.Model(&product)
 
-	checkProductBySlug := db.Preload("Review").Debug().Where("slug_product = ?", slug).First(&product)
+	checkProductBySlug := db.Preload("Review").Preload("Category").Debug().Where("slug_product = ?", slug).First(&product)
 	if checkProductBySlug.RowsAffected < 0 {
 		return nil, errors.New("failed to get product by slug")
 	}
