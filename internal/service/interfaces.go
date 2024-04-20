@@ -12,6 +12,7 @@ import (
 	"github.com/alifdwt/haiwan-go/internal/domain/requests/slider"
 	"github.com/alifdwt/haiwan-go/internal/domain/requests/user"
 	"github.com/alifdwt/haiwan-go/internal/domain/responses"
+	cartRes "github.com/alifdwt/haiwan-go/internal/domain/responses/cart"
 	catresponse "github.com/alifdwt/haiwan-go/internal/domain/responses/category"
 	or "github.com/alifdwt/haiwan-go/internal/domain/responses/order"
 	pro "github.com/alifdwt/haiwan-go/internal/domain/responses/product"
@@ -52,9 +53,9 @@ type ProductService interface {
 }
 
 type CartService interface {
-	GetCartAll(userId int) (*[]models.Cart, error)
-	CreateCart(cartRequest *cart.CartCreateRequest) (*models.Cart, error)
-	DeleteCart(cartId int) (*models.Cart, error)
+	GetCartAll(userId int) ([]*cartRes.CartResponse, error)
+	CreateCart(cartRequest *cart.CartCreateRequest) (*cartRes.CartResponse, error)
+	DeleteCart(cartId int) (*cartRes.CartResponse, error)
 	DeleteCartMany(cartIds cart.DeleteCartRequest) (int64, error)
 }
 

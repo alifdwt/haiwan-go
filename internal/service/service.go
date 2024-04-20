@@ -43,7 +43,7 @@ func NewService(deps Deps) *Service {
 		User:       NewUserService(deps.Repository.User, deps.Hashing, deps.Logger),
 		Category:   NewCategoryService(deps.Repository.Category, deps.Mapper.CategoryMapper),
 		Product:    NewProductService(deps.Repository.Product, deps.Logger, deps.Mapper.ProductMapper),
-		Cart:       NewCartService(deps.Repository.Cart, deps.Logger),
+		Cart:       NewCartService(deps.Repository.Cart, deps.Logger, deps.Mapper.CartMapper),
 		Order:      NewOrderService(deps.Repository.Order, deps.Logger, deps.Mapper.OrderMapper),
 		Review:     NewReviewService(deps.Repository.Review),
 		Slider:     NewSliderService(deps.Repository.Slider, deps.Logger),

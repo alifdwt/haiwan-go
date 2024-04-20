@@ -213,6 +213,7 @@ export default function Trending() {
       },
     },
   ];
+
   return (
     <div className="space-y-2">
       <div className="w-full border-b-2 pb-1 flex items-center gap-2">
