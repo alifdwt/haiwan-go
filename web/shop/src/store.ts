@@ -4,6 +4,7 @@ import { persistReducer, persistStore } from "redux-persist";
 
 import UserReducer from "@/slices/user/userSlice";
 import CartReducer from "@/slices/cart/cartSlice";
+import categoryReducer from "@/slices/category/categorySlice";
 import RajaOngkirReducer from "@/slices/rajaongkir/rajaongkirSlice";
 
 const persistConfig = {
@@ -15,6 +16,7 @@ const rootReducer = combineReducers({
   user: UserReducer,
   cart: CartReducer,
   rajaongkir: RajaOngkirReducer,
+  category: categoryReducer,
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

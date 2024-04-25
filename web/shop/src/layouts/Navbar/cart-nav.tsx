@@ -34,6 +34,7 @@ export default function CartNav() {
       dispatch(getCarts(data.data));
       return data.data;
     },
+    enabled: !!access_token,
   });
 
   const { handleDeleteCart } = useDeleteCart();

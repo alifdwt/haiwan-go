@@ -30,24 +30,24 @@ func (s *categoryService) GetCategoryAll() ([]*catresponse.CategoryResponse, err
 	return mapper, nil
 }
 
-func (s *categoryService) GetCategoryById(categoryId int) (*catresponse.CategoryResponse, error) {
+func (s *categoryService) GetCategoryById(categoryId int) (*catresponse.CategoryWithRelationResponse, error) {
 	res, err := s.repository.GetCategoryById(categoryId)
 	if err != nil {
 		return nil, err
 	}
 
-	mapper := s.mapper.ToCategoryResponse(res)
+	mapper := s.mapper.ToCategoryWithRelationResponse(res)
 
 	return mapper, nil
 }
 
-func (s *categoryService) GetCategoryBySlug(slug string) (*catresponse.CategoryResponse, error) {
+func (s *categoryService) GetCategoryBySlug(slug string) (*catresponse.CategoryWithRelationResponse, error) {
 	res, err := s.repository.GetCategoryBySlug(slug)
 	if err != nil {
 		return nil, err
 	}
 
-	mapper := s.mapper.ToCategoryResponse(res)
+	mapper := s.mapper.ToCategoryWithRelationResponse(res)
 
 	return mapper, nil
 }

@@ -9,3 +9,8 @@ type CategoryResponse struct {
 	CreatedAt   string `json:"created_at"`
 	UpdatedAt   string `json:"updated_at"`
 }
+
+type CategoryWithRelationResponse struct {
+	CategoryResponse
+	Products interface{} `json:"products"`
+}

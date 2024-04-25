@@ -24,6 +24,13 @@ func (m *categoryMapper) ToCategoryResponse(request *models.Category) *category.
 	}
 }
 
+func (m *categoryMapper) ToCategoryWithRelationResponse(request *models.Category) *category.CategoryWithRelationResponse {
+	return &category.CategoryWithRelationResponse{
+		CategoryResponse: *m.ToCategoryResponse(request),
+		Products:         NewMapper().ProductMapper.ToProductResponses(&request.Products),
+	}
+}
+
 func (m *categoryMapper) ToCategoryResponses(requests *[]models.Category) []*category.CategoryResponse {
 	var responses []*category.CategoryResponse
 	for _, request := range *requests {

@@ -36,8 +36,8 @@ type UserService interface {
 
 type CategoryService interface {
 	GetCategoryAll() ([]*catresponse.CategoryResponse, error)
-	GetCategoryById(categoryId int) (*catresponse.CategoryResponse, error)
-	GetCategoryBySlug(slug string) (*catresponse.CategoryResponse, error)
+	GetCategoryById(categoryId int) (*catresponse.CategoryWithRelationResponse, error)
+	GetCategoryBySlug(slug string) (*catresponse.CategoryWithRelationResponse, error)
 	CreateCategory(request *category.CreateCategoryRequest) (*catresponse.CategoryResponse, error)
 	UpdateCategoryById(id int, updatedCategory *category.UpdateCategoryRequest) (*catresponse.CategoryResponse, error)
 	DeleteCategoryById(categoryId int) (*catresponse.CategoryResponse, error)

@@ -36,7 +36,7 @@ func (r *categoryRepository) GetCategoryById(categoryId int) (*models.Category, 
 
 	db := r.db.Model(category)
 
-	checkCategoryById := db.Debug().Where("id = ?", categoryId).First(&category)
+	checkCategoryById := db.Debug().Preload("Products").Where("id = ?", categoryId).First(&category)
 	if checkCategoryById.RowsAffected < 0 {
 		return &category, errors.New("category id is not found")
 	}
@@ -49,7 +49,7 @@ func (r *categoryRepository) GetCategoryBySlug(slug string) (*models.Category, e
 
 	db := r.db.Model(&category)
 
-	checkCategorySlug := db.Debug().Where("slug_category = ?", slug).First(&category)
+	checkCategorySlug := db.Debug().Preload("Products").Where("slug_category = ?", slug).First(&category)
 	if checkCategorySlug.RowsAffected < 0 {
 		return &category, errors.New("error while check category by slug")
 	}

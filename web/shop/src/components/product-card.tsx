@@ -9,7 +9,7 @@ export default function ProductCard({ product }: { product: Product }) {
         <img
           src={product.image_path}
           alt={product.name}
-          className="w-full h-full object-cover rounded-t-lg"
+          className="w-18 h-72 object-cover rounded-t-lg"
         />
         <div className="p-2">
           <p className="font-bold">{product.name}</p>

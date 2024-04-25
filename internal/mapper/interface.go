@@ -10,6 +10,7 @@ import (
 
 type CategoryMapping interface {
 	ToCategoryResponse(request *models.Category) *category.CategoryResponse
+	ToCategoryWithRelationResponse(request *models.Category) *category.CategoryWithRelationResponse
 	ToCategoryResponses(requests *[]models.Category) []*category.CategoryResponse
 }
 

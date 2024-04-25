@@ -93,66 +93,71 @@ export default function UserNav() {
   }
 
   return (
-    <Dialog>
-      <DialogTrigger asChild>
-        <Button className="ml-auto" variant={"secondary"}>
-          Masuk
-        </Button>
-      </DialogTrigger>
-      <DialogContent>
-        <DialogHeader>
-          <DialogTitle>Masuk</DialogTitle>
-          <DialogDescription>
-            Masuk ke akun anda untuk melanjutkan transaksi
-          </DialogDescription>
-        </DialogHeader>
-        <Form {...loginForm}>
-          <form onSubmit={loginForm.handleSubmit(handleLogin)}>
-            <FormField
-              control={loginForm.control}
-              name="email"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Email</FormLabel>
-                  <FormControl>
-                    <Input
-                      disabled={mutation.isPending}
-                      {...field}
-                      placeholder="Email"
-                    />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-            <FormField
-              control={loginForm.control}
-              name="password"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Password</FormLabel>
-                  <FormControl>
-                    <Input
-                      disabled={mutation.isPending}
-                      {...field}
-                      placeholder="Password"
-                      type="password"
-                    />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-            <Button
-              type="submit"
-              disabled={mutation.isPending}
-              className="w-full mt-4"
-            >
-              Masuk
-            </Button>
-          </form>
-        </Form>
-      </DialogContent>
-    </Dialog>
+    <>
+      <Button className="ml-auto" variant={"secondary"}>
+        <a href="/register">Daftar</a>
+      </Button>
+      <Dialog>
+        <DialogTrigger asChild>
+          <Button className="ml-auto" variant={"secondary"}>
+            Masuk
+          </Button>
+        </DialogTrigger>
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle>Masuk</DialogTitle>
+            <DialogDescription>
+              Masuk ke akun anda untuk melanjutkan transaksi
+            </DialogDescription>
+          </DialogHeader>
+          <Form {...loginForm}>
+            <form onSubmit={loginForm.handleSubmit(handleLogin)}>
+              <FormField
+                control={loginForm.control}
+                name="email"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Email</FormLabel>
+                    <FormControl>
+                      <Input
+                        disabled={mutation.isPending}
+                        {...field}
+                        placeholder="Email"
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={loginForm.control}
+                name="password"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Password</FormLabel>
+                    <FormControl>
+                      <Input
+                        disabled={mutation.isPending}
+                        {...field}
+                        placeholder="Password"
+                        type="password"
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <Button
+                type="submit"
+                disabled={mutation.isPending}
+                className="w-full mt-4"
+              >
+                Masuk
+              </Button>
+            </form>
+          </Form>
+        </DialogContent>
+      </Dialog>
+    </>
   );
 }
