@@ -32,8 +32,8 @@ func (h *Handler) Init() *fiber.App {
 	router.Use(logger.New(
 		logger.Config{
 			Format:     "${cyan}[${time}] ${white}${pid} ${red}${status} ${blue}[${method}] ${white}${path}\n",
-			TimeFormat: "02-Jan-2006",
-			TimeZone:   "UTC",
+			TimeFormat: "02-Jan-2006 15:04:05",
+			TimeZone:   "UTC-7",
 		},
 	))
 	router.Use(cors.New())

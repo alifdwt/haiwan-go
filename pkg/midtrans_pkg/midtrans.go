@@ -21,6 +21,7 @@ func setupGlobalMidtransConfig() {
 
 	midtrans.ClientKey = config.MIDTRANS_CLIENT_KEY
 	midtrans.ServerKey = config.MIDTRANS_SERVER_KEY
+	midtrans.Environment = midtrans.Sandbox
 }
 
 func NewSnapClient() *SnapClient {
@@ -28,7 +29,7 @@ func NewSnapClient() *SnapClient {
 
 	var s snap.Client
 
-	s.New("https://app.sandbox.midtrans.com/snap/v1/transactions", midtrans.Sandbox)
+	s.New(midtrans.ServerKey, midtrans.Sandbox)
 
 	return &SnapClient{s}
 }

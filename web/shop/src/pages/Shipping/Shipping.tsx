@@ -67,7 +67,7 @@ export default function ShippingPage() {
                   <SelectGroup>
                     <SelectLabel>Kota</SelectLabel>
                     {citiesData &&
-                      citiesData.data.rajaongkir.results.map((city: City) => {
+                      citiesData.rajaongkir.results.map((city: City) => {
                         return (
                           <SelectItem key={city.city_id} value={city.city_id}>
                             {city.type} {city.city_name}

@@ -92,7 +92,7 @@ func (r *rajaOngkirService) GetCost(request rajaongkirrequest.OngkosRequest) (ma
 	client, headers := r.rajaOngkir.GetConnectionAndHeaders()
 	url := fmt.Sprintf("%s%s", r.rajaOngkir.BaseURL, endpoint)
 
-	payload := fmt.Sprintf("origin=%s&destination=%s&weight%d&courier=%s",
+	payload := fmt.Sprintf("origin=%s&destination=%s&weight=%d&courier=%s",
 		request.Asal, request.Tujuan, request.Berat, request.Kurir)
 
 	req, err := http.NewRequest("POST", url, strings.NewReader(payload))
@@ -123,5 +123,11 @@ func (r *rajaOngkirService) GetCost(request rajaongkirrequest.OngkosRequest) (ma
 		return result, nil
 	}
 
-	return nil, errors.New("Failed to get shipping cost from RajaOngkir API. Status code: " + string(rune(res.StatusCode)))
+	// return nil, errors.New("Failed to get shipping cost from RajaOngkir API. Status code: " + string(rune(res.StatusCode)))
+	var result map[string]interface{}
+	err = json.NewDecoder(res.Body).Decode(&result)
+	if err != nil {
+		return nil, err
+	}
+	return result, errors.New("Failed to get shipping cost from RajaOngkir API. Status code: " + string(rune(res.StatusCode)))
 }

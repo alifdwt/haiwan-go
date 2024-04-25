@@ -99,6 +99,7 @@ func (h *Handler) handlerRajaOngkirCost(c *fiber.Ctx) error {
 	if err != nil {
 		return c.Status(fiber.StatusInternalServerError).JSON(
 			fiber.Map{
+				"data":  cost,
 				"error": err.Error(),
 			},
 		)

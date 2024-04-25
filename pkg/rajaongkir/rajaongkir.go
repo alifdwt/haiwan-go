@@ -3,8 +3,7 @@ package rajaongkir
 import (
 	"net/http"
 
-	"github.com/alifdwt/haiwan-go/pkg/dotenv"
-	"github.com/gofiber/fiber/v2/log"
+	"github.com/spf13/viper"
 )
 
 type RajaOngkirAPI struct {
@@ -13,14 +12,14 @@ type RajaOngkirAPI struct {
 }
 
 func NewRajaOngkirAPI() *RajaOngkirAPI {
-	config, err := dotenv.LoadConfig(".")
-	if err != nil {
-		log.Error("cannot load .env file", err)
-	}
+	// config, err := dotenv.LoadConfig(".")
+	// if err != nil {
+	// 	log.Error("cannot load .env file", err)
+	// }
 
 	return &RajaOngkirAPI{
 		BaseURL: "https://api.rajaongkir.com",
-		ApiKey:  config.RAJAONGKIR_API,
+		ApiKey:  viper.GetString("RAJAONGKIR_API"),
 	}
 }
 
