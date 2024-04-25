@@ -5,16 +5,33 @@ import CategoryPage from "@/pages/Category/Category";
 import Home from "@/pages/Home/Home";
 import LoginPage from "@/pages/Login/Login";
 import ProductPage from "@/pages/Product/Product";
+import RegisterPage from "@/pages/Register/Register";
 import ShippingPage from "@/pages/Shipping/Shipping";
 import AuthProvider from "@/slices/AuthProvider";
-import { BrowserRouter, Route, Routes as RouterRoutes } from "react-router-dom";
+import { RootState } from "@/store";
+import { useSelector } from "react-redux";
+import {
+  BrowserRouter,
+  Navigate,
+  Route,
+  Routes as RouterRoutes,
+} from "react-router-dom";
 
 export default function Routes() {
+  const { access_token } = useSelector((state: RootState) => state.user);
+
   return (
     <BrowserRouter>
       <RouterRoutes>
         <Route element={<Layout />}>
-          <Route path="/login" element={<LoginPage />} />
+          <Route
+            path="/login"
+            element={access_token ? <Navigate to="/" /> : <LoginPage />}
+          />
+          <Route
+            path="/register"
+            element={access_token ? <Navigate to="/" /> : <RegisterPage />}
+          />
           <Route path="/" element={<Home />} />
           <Route path="/products/:productSlug" element={<ProductPage />} />
           <Route path="/categories/:categorySlug" element={<CategoryPage />} />

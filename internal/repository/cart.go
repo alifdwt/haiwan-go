@@ -22,8 +22,8 @@ func (r *cartRepository) GetCartAll(userId int) (*[]models.Cart, error) {
 	db := r.db.Model(&carts)
 
 	checkCartByUserId := db.Debug().Where("user_id = ?", userId).Find(&carts)
-	if checkCartByUserId.RowsAffected < 1 {
-		return nil, errors.New("cart not found")
+	if checkCartByUserId.Error != nil {
+		return nil, checkCartByUserId.Error
 	}
 
 	return &carts, nil

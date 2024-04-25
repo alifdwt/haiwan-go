@@ -46,7 +46,7 @@ export default function CartNav() {
       <DropdownMenuTrigger>
         <Button variant={"ghost"} className="flex">
           <ShoppingCartIcon className="h-4 w-4" color="white" />
-          {carts.length > 0 && (
+          {carts && carts.length > 0 && (
             <sup className="text-xs bg-red-500 text-primary-foreground rounded-full px-1">
               {carts.length}
             </sup>
@@ -64,39 +64,45 @@ export default function CartNav() {
             <p>Memuat...</p>
           ) : (
             <>
-              {carts.map((cart) => (
-                <DropdownMenuItem
-                  key={cart.id}
-                  className="flex justify-between"
-                >
-                  <div className="flex items-center space-x-3">
-                    <img
-                      src={cart.image}
-                      alt={cart.name}
-                      width={50}
-                      height={50}
-                      className="h-12 w-12 object-cover rounded-lg"
-                    />
-                    <div className="flex flex-col ml-4 w-64">
-                      <p>{cart.name}</p>
-                      <p>
-                        {cart.quantity} x {ToRupiah(parseInt(cart.price))}
-                      </p>
+              {carts ? (
+                carts.map((cart) => (
+                  <DropdownMenuItem
+                    key={cart.id}
+                    className="flex justify-between"
+                  >
+                    <div className="flex items-center space-x-3">
+                      <img
+                        src={cart.image}
+                        alt={cart.name}
+                        width={50}
+                        height={50}
+                        className="h-12 w-12 object-cover rounded-lg"
+                      />
+                      <div className="flex flex-col ml-4 w-64">
+                        <p>{cart.name}</p>
+                        <p>
+                          {cart.quantity} x {ToRupiah(parseInt(cart.price))}
+                        </p>
+                      </div>
+                      <Button
+                        variant={"destructive"}
+                        size={"icon"}
+                        onClick={() => handleDeleteCart(cart.id)}
+                      >
+                        <Trash2Icon className="h-5 w-5" />
+                      </Button>
                     </div>
-                    <Button
-                      variant={"destructive"}
-                      size={"icon"}
-                      onClick={() => handleDeleteCart(cart.id)}
-                    >
-                      <Trash2Icon className="h-5 w-5" />
-                    </Button>
-                  </div>
-                </DropdownMenuItem>
-              ))}
+                  </DropdownMenuItem>
+                ))
+              ) : (
+                <p className="text-center my-5">Belum ada barang nih</p>
+              )}
               <DropdownMenuSeparator />
               <DropdownMenuLabel className="font-normal flex justify-between">
                 <p>Total</p>
-                <p className="font-bold">{ToRupiah(getTotalPrice(carts))}</p>
+                <p className="font-bold">
+                  {carts && ToRupiah(getTotalPrice(carts))}
+                </p>
               </DropdownMenuLabel>
             </>
           )}
